@@ -31,5 +31,6 @@ class ServiceType(models.Model):
     class Meta:
         verbose_name = _("Service")
         verbose_name_plural = _("Service")
+        
 
 
