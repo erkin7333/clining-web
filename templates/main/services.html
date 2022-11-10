@@ -147,20 +147,9 @@
                             Get a quick response within 24 hours
                         </p>
                         <form method="POST">
-                        {% csrf_token %}
+                            {% csrf_token %}
                             <div class="form-box">
-
-                                <select name="option[]">
-                                    {% for w in cat %}
-                                    <option value="{{ w.name }}{{ w.price }}">{{ w.name }} {{ w.price }}</option>
-                                    {% endfor %}
-                                </select>
-                                {% for f in pr %}
-                                <div class="form-checkbox">
-                                    <input type="checkbox" class="chkbox" id="checkbox_1" name="checks[]" value="{{ f.services.name }} {{ f.price }}">
-                                    <label for="checkbox_1" class="rate__lable">{{ f.services.name }} {{ f.price }}</label>
-                                </div>
-                            {% endfor %}
+                                <select class="select__options"></select>
                             </div>
 
                             <div class="row" style="margin-top: 25px;">
@@ -182,7 +171,35 @@
         </div>
     </div>
 
-
 {% endblock content %}
+{% block script %}
+    <script>
+        const baseUrl = location.origin;
+        const parentDiv = document.querySelector(".form-box");
+        const select = document.querySelector(".select__options");
+        fetch(`${baseUrl}/roomcategory/`)
+            .then(res => res.json())
+            .then(res => {
+                    if (select) {
+                        res.categoryroom.forEach(item => {
+                            const optionElem = document.createElement("option");
+                            optionElem.value = item.price;
+                            optionElem.innerText = item.name
+                            select.appendChild(optionElem);
+                            $(".select__options").niceSelect("update");
+                        })
+                    }
+                }
+            )
+            .catch(err => console.log(err))
+        fetch(`${baseUrl}/serviceprice/`)
+            .then(res => res.json())
+            .then(res => {
+                    console.log(res);
+                }
+            )
+            .catch(err => console.log(err))
 
+    </script>
+{% endblock %}
 

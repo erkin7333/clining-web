@@ -31,9 +31,9 @@ class RoomCategory(models.Model):
 
 
 class Orders(models.Model):
-    nameroom = models.CharField(max_length=255)
-    nameservice = models.CharField(max_length=255)
-    # priceroom = models.PositiveIntegerField()
-    # priceservice = models.PositiveIntegerField()
+    roomname = models.CharField(max_length=100)
+    roomprice = models.PositiveIntegerField()
+    servicename = models.CharField(max_length=100)
+    serviceprice = models.PositiveIntegerField()
     def __str__(self):
-        return f"{self.nameservice} {self.nameservice}"
+        return f"{str(self.roomname)} {str(self.roomprice)}"

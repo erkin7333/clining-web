@@ -42,7 +42,7 @@ admin.site.register(Price, PriceAdmin)
 
 class OrdersAdmin(admin.ModelAdmin):
     list_display = [
-        'nameroom', 'nameservice'
+        'roomname', 'roomprice', 'servicename', 'serviceprice'
     ]
     class Meta:
         model = Orders
