@@ -142,48 +142,23 @@
                         <p>
                             Get a quick response within 24 hours
                         </p>
-                        <form>
-                           
+
+                        <!-- forma -->
+                        <form method="POST">
+                           {% csrf_token %}
                            <div class="form-box">
 
-                            <select name="" id="1">
-                                <option value="1">Квартира-1</option>
-                            <option value="2">Квартира-2</option>
-                            <option value="3">Квартира-3</option>
+                            <select id="">
+                                {% for rm in room %}
+                                    <option name="{{rm.name}}" value="{{rm.price}}">{{rm.name}}</option>
+                                {% endfor %}
                             </select>
-
+                            {% for sr in service %}
                             <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_1">
-                                <label for="checkbox_1" class="rate__lable">Комнат-1</label>
+                                <input type="checkbox"  class="rate__input" id="{{sr.id}} value={{sr.name}}">
+                                <label for="{{sr.name}}"  name="{{sr.price}}" class="rate__lable">{{sr.name}}</label>
                             </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_2">
-                                <label for="checkbox_2" class="rate__lable">Комнат-2</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_3">
-                                <label for="checkbox_3" class="rate__lable">Комнат-6</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_4">
-                                <label for="checkbox_4" class="rate__lable">Комнат-4</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_5">
-                                <label for="checkbox_5" class="rate__lable">Подвал</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_6">
-                                <label for="checkbox_6" class="rate__lable">Стирка</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_7">
-                                <label for="checkbox_7" class="rate__lable">улица</label>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" class="rate__input" id="checkbox_8">
-                                <label for="checkbox_8" class="rate__lable">Сан узел</label>
-                            </div>
+                            {% endfor %}
                            </div>
 
                            <div class="row" style="margin-top: 25px;">
@@ -197,9 +172,13 @@
 
 
                         <div class="form-price">
-                            <h2>224 000 <span>сум</span></h2>
+                            <h2>--  </span></h2>
                         </div>
                         </form>
+
+                        <!-- forma -->
+
+
                     </div>
 
                    
@@ -207,6 +186,7 @@
             </div>
         </div>
     </div>
+    
 
 
     {% endblock content %}
