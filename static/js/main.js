@@ -5,10 +5,10 @@
     Version         : 1.0
     
 * ================================================================= */
-(function($) {
+(function ($) {
     "use strict";
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
         /* ==================================================
@@ -37,7 +37,7 @@
             target: ".navbar-collapse",
             offset: 200
         });
-        $('a.smooth-menu').on('click', function(event) {
+        $('a.smooth-menu').on('click', function (event) {
             var $anchor = $(this);
             var headerH = '70';
             $('html, body').stop().animate({
@@ -53,10 +53,10 @@
         function doAnimations(elems) {
             //Cache the animationend event in a variable
             var animEndEv = 'webkitAnimationEnd animationend';
-            elems.each(function() {
+            elems.each(function () {
                 var $this = $(this),
                     $animationType = $this.data('animation');
-                $this.addClass($animationType).one(animEndEv, function() {
+                $this.addClass($animationType).one(animEndEv, function () {
                     $this.removeClass($animationType);
                 });
             });
@@ -70,7 +70,7 @@
         //Animate captions in first slide on page load
         doAnimations($firstAnimatingElems);
         //Other slides to be animated on carousel slide event
-        $immortalCarousel.on('slide.bs.carousel', function(e) {
+        $immortalCarousel.on('slide.bs.carousel', function (e) {
             var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
             doAnimations($animatingElems);
         });
@@ -85,10 +85,10 @@
         /* ==================================================
             # imagesLoaded active
         ===============================================*/
-        $('#portfolio-grid,.blog-masonry').imagesLoaded(function() {
+        $('#portfolio-grid,.blog-masonry').imagesLoaded(function () {
 
             /* Filter menu */
-            $('.mix-item-menu').on('click', 'button', function() {
+            $('.mix-item-menu').on('click', 'button', function () {
                 var filterValue = $(this).attr('data-filter');
                 $grid.isotope({
                     filter: filterValue
@@ -96,7 +96,7 @@
             });
 
             /* filter menu active class  */
-            $('.mix-item-menu button').on('click', function(event) {
+            $('.mix-item-menu button').on('click', function (event) {
                 $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 event.preventDefault();
@@ -127,7 +127,7 @@
             # Fun Factor Init
         ===============================================*/
         $('.timer').countTo();
-        $('.fun-fact').appear(function() {
+        $('.fun-fact').appear(function () {
             $('.timer').countTo();
         }, {
             accY: -100
@@ -150,8 +150,7 @@
         /* ==================================================
             # Twenty Twenty Plugin Init
         ===============================================*/
-        $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7}); 
-
+        $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});
 
 
         /* ==================================================
@@ -178,12 +177,12 @@
             fixedContentPos: false
         });
 
-        $('.magnific-mix-gallery').each(function() {
+        $('.magnific-mix-gallery').each(function () {
             var $container = $(this);
             var $imageLinks = $container.find('.item');
 
             var items = [];
-            $imageLinks.each(function() {
+            $imageLinks.each(function () {
                 var $item = $(this);
                 var type = 'image';
                 if ($item.hasClass('magnific-iframe')) {
@@ -207,7 +206,7 @@
                 },
                 type: 'image',
                 callbacks: {
-                    beforeOpen: function() {
+                    beforeOpen: function () {
                         var index = $imageLinks.index(this.st.el);
                         if (-1 !== index) {
                             this.goTo(index);
@@ -333,7 +332,7 @@
         /* ==================================================
             # Services Carousel
          ===============================================*/
-         $('.services-style-four-carousel').owlCarousel({
+        $('.services-style-four-carousel').owlCarousel({
             loop: true,
             margin: 30,
             nav: false,
@@ -379,13 +378,13 @@
         /* ==================================================
             Contact Form Validations
         ================================================== */
-        $('.contact-form').each(function() {
+        $('.contact-form').each(function () {
             var formInstance = $(this);
-            formInstance.submit(function() {
+            formInstance.submit(function () {
 
                 var action = $(this).attr('action');
 
-                $("#message").slideUp(750, function() {
+                $("#message").slideUp(750, function () {
                     $('#message').hide();
 
                     $('#submit')
@@ -398,10 +397,10 @@
                             phone: $('#phone').val(),
                             comments: $('#comments').val()
                         },
-                        function(data) {
+                        function (data) {
                             document.getElementById('message').innerHTML = data;
                             $('#message').slideDown('slow');
-                            $('.contact-form img.loader').fadeOut('slow', function() {
+                            $('.contact-form img.loader').fadeOut('slow', function () {
                                 $(this).remove()
                             });
                             $('#submit').removeAttr('disabled');
@@ -418,9 +417,12 @@
     /* ==================================================
         Preloader Init
      ===============================================*/
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         // Animate loader off screen
-        $(".se-pre-con").fadeOut("slow");;
+        $(".se-pre-con").fadeOut("slow");
+        ;
     });
 
 })(jQuery); // End jQuery
+
+

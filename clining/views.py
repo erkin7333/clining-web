@@ -1,4 +1,8 @@
-from django.shortcuts import render
+import string
+
+from django.shortcuts import render, redirect
+from .models import RoomCategory, Price, ServiceType, Orders
+
 
 # Create your views here.
 def home(request):
@@ -25,4 +29,18 @@ def guests(request):
 
 
 def services(request):
-    return render(request, 'main/services.html')
+    cat = RoomCategory.objects.all()
+    pr = Price.objects.all()
+    if request.method == "POST":
+        check = request.POST.getlist('checks[]')
+        option = request.POST.getlist('option[]')
+        print("WWWWWWWWWWW_______>>>>>>>>>", check)
+        print("OOOOOOOOOOO_______>>>>>>>>>", option)
+        req_obj = Orders.objects.create(nameroom=option, nameservice=check)
+        req_obj.save()
+        return redirect('myprint:services')
+    context = {
+        'cat': cat,
+        'pr': pr
+    }
+    return render(request, 'main/services.html', context=context)
