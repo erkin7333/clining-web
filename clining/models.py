@@ -32,15 +32,7 @@ class ServiceType(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def count(self):
-        total = self.room.price + self.price
-        return total
-
-    @property
-    def single_price(self):
-        single = self.room.price
-        return single
+    
 
     class Meta:
         verbose_name = _("Service")
@@ -55,6 +47,17 @@ class Double(models.Model):
     def __str__(self):
         return self.name
         
+    @property
+    def count(self):
+        total = self.room.price + self.price
+        return total
+
+    @property
+    def single_price(self):
+        single = self.room.price
+        return single
+
+
     class Meta:
         verbose_name = _("Birlashma Zaraz")
         verbose_name_plural = _("Birlashma Zakazlar")
