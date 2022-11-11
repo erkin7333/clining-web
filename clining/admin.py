@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import RoomCategory, ServiceType, Price, Orders
+from .models import RoomCategory, ServiceType, Orders
 
 
 
 class RoomCategoryAdmin(admin.ModelAdmin):
     list_display = [
-        'name', 'price'
+        'id', 'name', 'price'
     ]
     list_display_links = [
         'name'
@@ -18,7 +18,7 @@ admin.site.register(RoomCategory, RoomCategoryAdmin)
 
 class ServiceTypeAdmin(admin.ModelAdmin):
     list_display = [
-        'name'
+        'id', 'name', 'price'
     ]
     list_display_links = [
         'name'
@@ -27,17 +27,7 @@ class ServiceTypeAdmin(admin.ModelAdmin):
         model = ServiceType
 admin.site.register(ServiceType, ServiceTypeAdmin)
 
-class PriceAdmin(admin.ModelAdmin):
-    list_display = [
-        'services', 'price'
-    ]
-    list_display_links = [
-        'services', 'price'
-    ]
-    class Meta:
-        model = Price
 
-admin.site.register(Price, PriceAdmin)
 
 
 class OrdersAdmin(admin.ModelAdmin):
