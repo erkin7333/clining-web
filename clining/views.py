@@ -17,7 +17,7 @@ def contact(request):
 
 
 def gallary_details(request):
-    return render(request, 'main/gallary-details.html')
+    return render(request, 'main/gallary-datails.html')
 
 def gallary(request):
     return render(request, 'main/gallary.html')
