@@ -31,7 +31,7 @@ class RoomCategoryAPIView(APIView):
 class ServicePriceAPIView(APIView):
     def get(self, request):
         return Response({
-            'servicecategoryprice': ServicePriceSerializers(Price.objects.all(), many=True).data
+            'servicecategoryprice': ServicePriceSerializers(ServiceType.objects.all(), many=True).data
         })
 
     def post(self, request):

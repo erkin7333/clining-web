@@ -1,4 +1,7 @@
 {% load static %}
+{% load i18n %}
+{% get_available_languages as languages %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,9 +151,11 @@
                                     <ul>
                                         <li class="search"><a href="#"><i class="fas fa-search"></i></a></li>
                                         <li style="width: 80px; display: flex; padding: 0px;" class="side-menu">
-                                            <a href="">Ru</a>
-                                            <a href="">Eng</a>
-                                            <a href="">Uz</a>
+                                            {% for lang_code, lang_name in languages %}
+                                                {% language lang_code %}
+                                                    <a href="/{{ lang_code }}">{{ lang_name }}</a>
+                                                {% endlanguage %}
+                                            {% endfor %}
                                         </li>
                                     </ul>
                                 </div> 
