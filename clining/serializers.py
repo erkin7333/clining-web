@@ -1,13 +1,12 @@
 from rest_framework import serializers
-from .models import Price, RoomCategory, ServiceType
+from .models import *
 
 
 
 
 class ServicePriceSerializers(serializers.ModelSerializer):
-    name = ServiceType.objects.all()
     class Meta:
-        model = Price
+        model = ServiceType
         fields = ('id', 'name', 'price')
 
 

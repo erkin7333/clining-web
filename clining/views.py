@@ -2,7 +2,7 @@ import keyword
 import string
 
 from django.shortcuts import render, redirect
-from .models import RoomCategory, Price, ServiceType, Orders
+from .models import *
 from .serializers import ServicePriceSerializers, RoomCategorySerializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
