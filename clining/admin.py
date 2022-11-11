@@ -38,3 +38,4 @@ class OrdersAdmin(admin.ModelAdmin):
         model = Orders
 
 admin.site.register(Orders, OrdersAdmin)
+
