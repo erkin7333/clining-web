@@ -65,6 +65,7 @@ class CardServices(models.Model):
     name = models.CharField(max_length=100)
     price = models.PositiveIntegerField()
     detail = models.CharField()
+    is_color_activ = models.BooleanField(default=None)
     def __str__(self):
         return self.name
     class Meta:
