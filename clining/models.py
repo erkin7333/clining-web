@@ -4,21 +4,33 @@ from django.utils.translation import gettext_lazy as _
 
 # Hope Page
 
-class OrderForm(models.Model):
-    name = models.CharField(_('name'), max_length=50)
-    email = models.EmailField(_('email'), max_length=60)
-    phone_number = models.IntegerField(_('phone_number'), )
-    description = models.TextField(_('description'), blank=True, null=True)
+class OrderCategory(models.Model):
+    name = models.CharField(_('name'), max_length=65)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = "Buyurtma shakli"
+        verbose_name = "Sub Order Category"
+
+class OrderForm(models.Model):
+    name = models.CharField(_('name'), max_length=50)
+    email = models.EmailField(_('email'), max_length=60)
+    phone_number = models.IntegerField(_('phone_number'), )
+    category = models.ForeignKey(OrderCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Order Form"
+
+
+
 
 # Home Image Carusel Category
 class CaruselImage(models.Model):
-    name = models.CharField(_(name), max_length=50)
+    name = models.CharField(_('name'), max_length=50)
     image = models.ImageField(_('image'), upload_to='media/carusel')
     def __str__(self):
         return self.name
@@ -34,7 +46,7 @@ class CaruselDetail(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        verbose_name = "Karusel Tavsilot"
+        verbose_name = "Carusel Detail"
 
 #  Doimiy Sozlamalar
 class Settings(models.Model):
@@ -52,7 +64,7 @@ class GallaryCategory(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = "Gallereya turlari"
+        verbose_name = "Gallary Category"
 
 # Gallereya Tavsiloti
 class GallaryDetail(models.Model):
@@ -62,7 +74,7 @@ class GallaryDetail(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        verbose_name = 'Gallereya tavsilotlari'
+        verbose_name = 'Gallery Detail'
 
 #  Xizmatlar
 class CardServices(models.Model):
@@ -72,7 +84,7 @@ class CardServices(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = 'Xizmatlar'
+        verbose_name = 'Card Xizmatlar'
 
 
 #
@@ -83,7 +95,7 @@ class SubServices(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = "Sub xizmatlar"
+        verbose_name = "Sub Card Xizmatlar"
 
 class ContactForm(models.Model):
     name = models.CharField(_('name'), max_length=50)
