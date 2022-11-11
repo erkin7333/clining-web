@@ -3,6 +3,8 @@ from .models import *
 
 
 
+
+
 class RoomCategoryAdmin(admin.ModelAdmin):
     list_display = [
         'name', 'price'
@@ -39,3 +41,12 @@ class OrdersAdmin(admin.ModelAdmin):
 
 admin.site.register(Orders, OrdersAdmin)
 
+### inline  formsets
+
+class ServiceIneLineAdmin(admin.TabularInline):
+    model = SubServices
+
+class AuthorAdmin(admin.ModelAdmin):
+    inlines = [ServiceIneLineAdmin]
+
+admin.site.register(CardServices, AuthorAdmin)

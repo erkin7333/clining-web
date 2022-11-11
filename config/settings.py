@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
+    'modeltranslation',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'rest_framework',
     'clining',
-    
     'rosetta',
 ]
 
@@ -113,17 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
-    ('en', _('English')),
-    ('ru', _('Russian')),
-    ('uz', _('Uzbek')),
+    ('en', 'en'),
+    ('uz', 'uz'),
+    ('ru', 'ru'),
 )
 
+MODELTRANSLATION_LANGUAGES = ('en', 'uz' )
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
-
-MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'ru'
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
-
 
 
 

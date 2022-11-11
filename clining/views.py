@@ -50,6 +50,7 @@ class ServicePriceAPIView(APIView):
 
 
 
+
 def home(request):
     return render(request, 'main/index.html')
 
@@ -74,6 +75,12 @@ def guests(request):
 
 def services(request):
     return render(request, 'main/services.html')
+
+
+
+
+def product_detail(request):
+    return render(request, 'main/product-details.html')
 
 # def services(request):
 #     cat = RoomCategory.objects.all()

@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 # Hope Page
 
 class OrderCategory(models.Model):
-    name = models.CharField(_('name'), max_length=65)
+    name = models.CharField(_('name'),max_length=65)
 
     def __str__(self):
         return self.name
