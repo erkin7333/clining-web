@@ -1,9 +1,55 @@
-from django.shortcuts import render, redirect
-from .models import *
-from django.contrib import messages
-from .forms import *
+import keyword
+import string
 
-# Create your views here.
+from django.shortcuts import render, redirect
+from .models import RoomCategory, Price, ServiceType, Orders
+from .serializers import ServicePriceSerializers, RoomCategorySerializers
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
+class RoomCategoryAPIView(APIView):
+    def get(self, request):
+        return Response({
+            'categoryroom': RoomCategorySerializers(RoomCategory.objects.all(), many=True).data
+        })
+
+    def post(self, request):
+        data = RoomCategorySerializers(data=request.data)
+        if data.is_valid():
+            return Response({
+                'status': "Post qo'shildi",
+                'data': data.errors
+            })
+        data.save()
+        return Response({
+            'status': 'success',
+            'data': RoomCategorySerializers(data.instance).data
+        })
+
+
+class ServicePriceAPIView(APIView):
+    def get(self, request):
+        return Response({
+            'servicecategoryprice': ServicePriceSerializers(Price.objects.all(), many=True).data
+        })
+
+    def post(self, request):
+        data = ServicePriceSerializers(data=request.data)
+        if data.is_valid():
+            return Response({
+                'status': "Post qo'shildi",
+                'data': data.errors
+            })
+        data.save()
+        return Response({
+            'status': 'success',
+            'data': ServicePriceSerializers(data.instance).data
+        })
+
+
+
+
 def home(request):
     return render(request, 'main/index.html')
 
@@ -17,7 +63,7 @@ def contact(request):
 
 
 def gallary_details(request):
-    return render(request, 'main/gallary-datails.html')
+    return render(request, 'main/gallary-details.html')
 
 def gallary(request):
     return render(request, 'main/gallary.html')
@@ -26,47 +72,45 @@ def gallary(request):
 def guests(request):
     return render(request, 'main/guests.html')
 
-
-
-
-
-
-
 def services(request):
-    room = RoomCategory.objects.all()
-    service = ServiceType.objects.all()
-    form = OrderForm()
+    return render(request, 'main/services.html')
 
-    if request.method=="POST":
-        form = OrderForm()
-        name=request.POST.get("name")
-        price=request.POST.get("price")
-        # print("->>>>>>>>>>>>>>>>>>", name, price)
-        obj = Double.objects.create(name=name, price=price)
-        obj.save()
-        return redirect('myprint:home')
-    else:
-        pass
-    context = {'room': room,
-               'service': service,
-               'form': form}
-    return render(request, 'main/services.html', context=context)
-
-
+# def services(request):
+#     cat = RoomCategory.objects.all()
+#     pr = Price.objects.all()
+#     if request.method == "POST":
+#         check = request.POST.getlist('checks[]')
+#         option = request.POST.getlist('option[]')
+#         print("WWWWWWWWWWW_______>>>>>>>>>", check)
+#         print("OOOOOOOOOOO_______>>>>>>>>>", option)
+#         # req_obj = Orders.objects.create(nameroom=option, nameservice=check)
+#         # req_obj.save()
+#         return redirect('myprint:services')
+#     context = {
+#         'cat': cat,
+#         'pr': pr
+#     }
+#     return render(request, 'main/services.html', context=context)
 
 
-
-
-
-
-
-def service_count(request):
-    form = OrderForm()
-    if request.method=="POST":
-        form = OrderForm()
-        form = Double.objects.create(name=request.POST.get("rooms"), price=request.POST.get("price"))
-        form.save()
-        return redirect('myprint:home')
-
-    context = {'form': form}
-    return render(request, 'main/service_count.html', context=context)
+# def services(request):
+#     cat = RoomCategory.objects.all()
+#     pr = Price.objects.all()
+#     if request.method == "POST":
+#         services = request.POST.getlist()
+#         house = request.POST.get('option[]').split("-")
+#         print("aaaaaaaaaaaa-------------", house)
+#         house_name = house[0]
+#         house_price = int(house[1])
+#         for service in services:
+#             service = service.split("-")
+#             service_name = service[0]
+#             service_price = service[1]
+#             new_order = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=service_name, serviceprice=service_price)
+#             new_order.save()
+#         return redirect('myprint:services')
+#     context = {
+#         'cat': cat,
+#         'pr': pr
+#     }
+#     return render(request, 'main/services.html', context=context)
