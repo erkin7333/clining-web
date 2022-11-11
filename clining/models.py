@@ -5,10 +5,10 @@ from django.utils.translation import gettext_lazy as _
 # Hope Page
 
 class OrderForm(models.Model):
-    name = models.CharField(_(name), max_length=50)
-    email = models.EmailField(_(), max_length=60)
-    phone_number = models.IntegerField(_(), )
-    description = models.TextField(_(), blank=True, null=True)
+    name = models.CharField(_('name'), max_length=50)
+    email = models.EmailField(_('email'), max_length=60)
+    phone_number = models.IntegerField(_('phone_number'), )
+    description = models.TextField(_('description'), blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -19,7 +19,7 @@ class OrderForm(models.Model):
 # Home Image Carusel Category
 class CaruselImage(models.Model):
     name = models.CharField(_(name), max_length=50)
-    image = models.ImageField(_(), upload_to='media/carusel')
+    image = models.ImageField(_('image'), upload_to='media/carusel')
     def __str__(self):
         return self.name
     class Meta:
@@ -29,8 +29,8 @@ class CaruselImage(models.Model):
 #  Home Carusel Detaile
 class CaruselDetail(models.Model):
     carusel = models.ForeignKey(CaruselImage, on_delete=models.CASCADE)
-    title = models.CharField(_(), max_length=255)
-    description = models.TextField(_())
+    title = models.CharField(_('title'), max_length=255)
+    description = models.TextField(_('description'))
     def __str__(self):
         return self.title
     class Meta:
@@ -38,8 +38,8 @@ class CaruselDetail(models.Model):
 
 #  Doimiy Sozlamalar
 class Settings(models.Model):
-    key = models.CharField(_(), max_length=50)
-    value = models.CharField(_(), max_length=500)
+    key = models.CharField(_('key'), max_length=50)
+    value = models.CharField(_('value'), max_length=500)
     def __str__(self):
         return self.key
     class Meta:
@@ -47,8 +47,8 @@ class Settings(models.Model):
 
 # Gallereya uchun Kategoriya
 class GallaryCategory(models.Model):
-    name = models.CharField(_(name), max_length=50)
-    image = models.ImageField(_(), upload_to="media/gallary")
+    name = models.CharField(_('name'), max_length=50)
+    image = models.ImageField(_('image'), upload_to="media/gallary")
     def __str__(self):
         return self.name
     class Meta:
@@ -57,8 +57,8 @@ class GallaryCategory(models.Model):
 # Gallereya Tavsiloti
 class GallaryDetail(models.Model):
     gallary = models.ForeignKey(GallaryCategory, on_delete=models.CASCADE)
-    title = models.CharField(_(), max_length=200)
-    description = models.TextField(_())
+    title = models.CharField(_('title'), max_length=200)
+    description = models.TextField(_('description'))
     def __str__(self):
         return self.title
     class Meta:
@@ -66,9 +66,9 @@ class GallaryDetail(models.Model):
 
 #  Xizmatlar
 class CardServices(models.Model):
-    name = models.CharField(_(name), max_length=100)
-    price = models.PositiveIntegerField(_(), )
-    detail = models.TextField(_(), )
+    name = models.CharField(_('name'), max_length=100)
+    price = models.PositiveIntegerField(_('price'), )
+    detail = models.TextField(_('detail'), )
     def __str__(self):
         return self.name
     class Meta:
@@ -78,8 +78,8 @@ class CardServices(models.Model):
 #
 class SubServices(models.Model):
     service = models.ForeignKey(CardServices, on_delete=models.CASCADE)
-    name = models.CharField(_(name), max_length=50)
-    is_exist = models.BooleanField(_(), default=True)
+    name = models.CharField(_('name'), max_length=50)
+    is_exist = models.BooleanField(_('is_exist'), default=True)
     def __str__(self):
         return self.name
     class Meta:
