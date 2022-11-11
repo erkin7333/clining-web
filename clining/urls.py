@@ -11,5 +11,7 @@ urlpatterns = [
     path('gallary/', gallary, name='gallary'),
     path('guests/', guests, name='guests'),
     path('services/', services, name='services'),
-    path('service_count/', service_count, name='service_count'),
+
+    path('roomcategory/', RoomCategoryAPIView.as_view()),
+    path('serviceprice/', ServicePriceAPIView.as_view())
 ]
