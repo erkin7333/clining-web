@@ -3,17 +3,23 @@ from django.db import models
 
 
 # Hope Page
-
+class OrderCategory(models.Model):
+    name = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = "Buyurtma turlari"
 class OrderForm(models.Model):
     name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=60)
-    phone_number = models.IntegerField()
-    description = models.TextField(blank=True, null=True)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=15)
+    ordercategory = models.ForeignKey(OrderCategory, on_delete=models.CASCADE, blank=True, null=True)
+
 
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = "Buyurtma shakli"
+        verbose_name = "Zakazlar"
 
 # Home Image Carusel Category
 class CaruselImage(models.Model):
@@ -26,6 +32,7 @@ class CaruselImage(models.Model):
 
 #  Home Carusel Detaile
 class CaruselDetail(models.Model):
+    caruselimage = models.ForeignKey(CaruselImage, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     def __str__(self):

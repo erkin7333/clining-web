@@ -6,6 +6,7 @@ app_name = "myprint"
 urlpatterns = [
     path('', home, name='home'),
     path('about/', about, name='about'),
+    path('product-detail/<int:pk>/', product_detail, name='product_detail'),
     path('contact/', contact, name='contact'),
     path('gallary_details/', gallary_details, name='gallary_details'),
     path('gallary/', gallary, name='gallary'),

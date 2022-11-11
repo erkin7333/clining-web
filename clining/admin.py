@@ -1,12 +1,19 @@
 from django.contrib import admin
-from .models import (RoomCategory, ServiceType, Orders, OrderForm,
+from .models import (RoomCategory, ServiceType, Orders, OrderCategory, OrderForm,
                      CaruselImage, CaruselDetail, Settings, GallaryCategory,
                      GallaryDetail, CardServices, SubServices, ContactForm)
+
+class OrderCategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    list_display_links = ['name']
+    class Meta:
+        model = OrderCategory
+admin.site.register(OrderCategory, OrderCategoryAdmin)
 
 
 class OrderFormAdmin(admin.ModelAdmin):
     list_display = [
-        'id', 'name', 'email', 'phone_number', 'description'
+        'id', 'name', 'email', 'phone_number', 'ordercategory'
     ]
     list_display_links = ['name', 'email']
     class Meta:
@@ -22,7 +29,7 @@ class CaruselImageAdmin(admin.ModelAdmin):
 admin.site.register(CaruselImage, CaruselImageAdmin)
 
 class CaruselDetailAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description']
+    list_display = ['id', 'caruselimage', 'title', 'description']
     list_display_links = ['id', 'title']
     class Meta:
         model = CaruselDetail

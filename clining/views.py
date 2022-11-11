@@ -2,10 +2,11 @@ import keyword
 import string
 
 from django.shortcuts import render, redirect
-from .models import RoomCategory, ServiceType, Orders
+from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail
 from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .forms import OrderModelForm
 
 
 class RoomCategoryAPIView(APIView):
@@ -51,8 +52,33 @@ class ServicePriceAPIView(APIView):
 
 
 def home(request):
-    return render(request, 'main/index.html')
+    caruselimg = CaruselImage.objects.filter()
+    form = OrderModelForm()
+    if request.method == 'POST':
+        form = OrderModelForm(request.POST)
+        # print("QWERTYTREAWERT------------", form)
+        if form.is_valid():
+            print('AAAAAAAAA------', form)
+            form.save()
+            return redirect('myprint:home')
+        else:
+            print("TTTTTTTTTTTT------------>>>>>>>", form.errors)
+            form = OrderModelForm()
+            print("SSSSSSSSSSSSSS------------>>>>>>>", form.errors)
+    context = {
+        'form': form,
+        'caruselimg': caruselimg,
 
+    }
+    return render(request, 'main/index.html', context=context)
+
+
+def product_detail(request, pk):
+    detailCarusel = CaruselDetail.objects.filter(caruselimage_id=pk)
+    context = {
+        'detailCarusel': detailCarusel
+    }
+    return render(request, 'main/product-detail.html', context=context)
 
 def about(request):
     return render(request, 'main/about.html')
