@@ -7,7 +7,7 @@ from django.db import models
 class OrderForm(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=60)
-    phone_number = models.IntegerField(max_length=14)
+    phone_number = models.IntegerField()
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -53,6 +53,7 @@ class GallaryCategory(models.Model):
 
 # Gallereya Tavsiloti
 class GallaryDetail(models.Model):
+    gallarycategory = models.ForeignKey(GallaryCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
     def __str__(self):
@@ -64,7 +65,7 @@ class GallaryDetail(models.Model):
 class CardServices(models.Model):
     name = models.CharField(max_length=100)
     price = models.PositiveIntegerField()
-    detail = models.CharField()
+    detail = models.TextField()
     is_color_activ = models.BooleanField(default=None)
     def __str__(self):
         return self.name
@@ -85,7 +86,7 @@ class SubServices(models.Model):
 class ContactForm(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=60)
-    phone_number = models.IntegerField(max_length=14)
+    phone_number = models.IntegerField()
     def __str__(self):
         return self.name
     class Meta:

@@ -2,8 +2,8 @@ import keyword
 import string
 
 from django.shortcuts import render, redirect
-from .models import RoomCategory, Price, ServiceType, Orders
-from .serializers import ServicePriceSerializers, RoomCategorySerializers
+from .models import RoomCategory, ServiceType, Orders
+from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -15,7 +15,7 @@ class RoomCategoryAPIView(APIView):
         })
 
     def post(self, request):
-        data = RoomCategorySerializers(data=request.data)
+        data = OrdersSerialiser(data=request.data)
         if data.is_valid():
             return Response({
                 'status': "Post qo'shildi",
@@ -24,18 +24,18 @@ class RoomCategoryAPIView(APIView):
         data.save()
         return Response({
             'status': 'success',
-            'data': RoomCategorySerializers(data.instance).data
+            'data': OrdersSerialiser(data.instance).data
         })
 
 
 class ServicePriceAPIView(APIView):
     def get(self, request):
         return Response({
-            'servicecategoryprice': ServicePriceSerializers(Price.objects.all(), many=True).data
+            'servicecategoryprice': ServicePriceSerializers(ServiceType.objects.all(), many=True).data
         })
 
     def post(self, request):
-        data = ServicePriceSerializers(data=request.data)
+        data = OrdersSerialiser(data=request.data)
         if data.is_valid():
             return Response({
                 'status': "Post qo'shildi",
@@ -44,7 +44,7 @@ class ServicePriceAPIView(APIView):
         data.save()
         return Response({
             'status': 'success',
-            'data': ServicePriceSerializers(data.instance).data
+            'data': OrdersSerialiser(data.instance).data
         })
 
 
