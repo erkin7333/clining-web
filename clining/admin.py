@@ -8,7 +8,7 @@ class RoomCategoryAdmin(admin.ModelAdmin):
         'name', 'price'
     ]
     list_display_links = [
-        'name'
+        'name', 'price'
     ]
     class Meta:
         model = RoomCategory
@@ -18,26 +18,16 @@ admin.site.register(RoomCategory, RoomCategoryAdmin)
 
 class ServiceTypeAdmin(admin.ModelAdmin):
     list_display = [
-        'name'
+        'name','price' 
     ]
     list_display_links = [
-        'name'
+        'name','price' 
     ]
     class Meta:
         model = ServiceType
 admin.site.register(ServiceType, ServiceTypeAdmin)
 
-class PriceAdmin(admin.ModelAdmin):
-    list_display = [
-        'services', 'price'
-    ]
-    list_display_links = [
-        'services', 'price'
-    ]
-    class Meta:
-        model = Price
 
-admin.site.register(Price, PriceAdmin)
 
 
 class OrdersAdmin(admin.ModelAdmin):
