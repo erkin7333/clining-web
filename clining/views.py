@@ -6,7 +6,7 @@ from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail
 from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .forms import OrderModelForm
+from .forms import OrderModelForm, ContactModelForm
 
 
 class RoomCategoryAPIView(APIView):
@@ -85,7 +85,18 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'main/contact.html')
+    form = ContactModelForm()
+    if request.method == "POST":
+        form = ContactModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('myprint:contact')
+        else:
+            form = ContactModelForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'main/contact.html', context=context)
 
 
 def gallary_details(request):

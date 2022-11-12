@@ -92,8 +92,10 @@ class SubServices(models.Model):
 
 class ContactForm(models.Model):
     name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=60)
-    phone_number = models.IntegerField()
+    email = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50)
+    description = models.TextField()
+
     def __str__(self):
         return self.name
     class Meta:
