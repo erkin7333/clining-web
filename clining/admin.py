@@ -2,6 +2,10 @@ from django.contrib import admin
 from .models import (RoomCategory, ServiceType, Orders, OrderCategory, OrderForm,
                      CaruselImage, CaruselDetail, Settings, GallaryCategory,
                      GallaryDetail, CardServices, SubServices, ContactForm)
+from modeltranslation.admin import TranslationAdmin
+
+
+
 
 class OrderCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
@@ -21,19 +25,17 @@ class OrderFormAdmin(admin.ModelAdmin):
 admin.site.register(OrderForm, OrderFormAdmin)
 
 
-class CaruselImageAdmin(admin.ModelAdmin):
+@admin.register(CaruselImage)
+class CaruselImageAdmin(TranslationAdmin):
     list_display = ['id', 'name', 'image']
     list_display_links = ['id', 'name']
-    class Meta:
-        model = CaruselImage
-admin.site.register(CaruselImage, CaruselImageAdmin)
 
-class CaruselDetailAdmin(admin.ModelAdmin):
+
+@admin.register(CaruselDetail)
+class CaruselDetailAdmin(TranslationAdmin):
     list_display = ['id', 'caruselimage', 'title', 'description']
     list_display_links = ['id', 'title']
-    class Meta:
-        model = CaruselDetail
-admin.site.register(CaruselDetail, CaruselDetailAdmin)
+
 
 
 class SettingsAdmin(admin.ModelAdmin):
@@ -43,36 +45,39 @@ class SettingsAdmin(admin.ModelAdmin):
         model = Settings
 admin.site.register(Settings, SettingsAdmin)
 
-class GallaryCategoryAdmin(admin.ModelAdmin):
+
+@admin.register(GallaryCategory)
+class GallaryCategoryAdmin(TranslationAdmin):
     list_display = ['id', 'name', 'image']
     list_display_links = ['id', 'name']
-    class Meta:
-        model = GallaryCategory
-admin.site.register(GallaryCategory, GallaryCategoryAdmin)
 
 
-class GallaryDetailAdmin(admin.ModelAdmin):
+@admin.register(GallaryDetail)
+class GallaryDetailAdmin(TranslationAdmin):
     list_display = ['id', 'gallarycategory', 'title', 'description']
     list_display_links = ['id', 'gallarycategory', 'title']
-    class Meta:
-        model = GallaryDetail
-admin.site.register(GallaryDetail, GallaryDetailAdmin)
 
 
-class CardServicesAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'price', 'detail', 'is_color_activ']
+
+@admin.register(CardServices)
+class CardServicesAdmin(TranslationAdmin):
+    list_display = ['id', 'services', 'name', 'price', 'detail']
     list_display_links = ['id', 'name', 'price']
-    class Meta:
-        model = CardServices
-admin.site.register(CardServices, CardServicesAdmin)
+    def services(self, obj):
+        return len(obj.service.all())
+    services.short_description = 'service'
+
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).prefetch_related('service')
 
 
-class SubServicesAdmin(admin.ModelAdmin):
-    list_display = ['id', 'service', 'name', 'is_exist']
-    list_display_links = ['id', 'service', 'name']
-    class Meta:
-        model = SubServices
-admin.site.register(SubServices, SubServicesAdmin)
+
+@admin.register(SubServices)
+class SubServicesAdmin(TranslationAdmin):
+    list_display = ['id', 'name', 'is_exist']
+    list_display_links = ['id', 'name']
+
+
 
 class ContactFormAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'email', 'phone_number']
@@ -82,29 +87,18 @@ class ContactFormAdmin(admin.ModelAdmin):
 admin.site.register(ContactForm, ContactFormAdmin)
 
 
+@admin.register(RoomCategory)
 class RoomCategoryAdmin(admin.ModelAdmin):
     list_display = [
         'id', 'name', 'price'
     ]
-    list_display_links = [
-        'name'
-    ]
-    class Meta:
-        model = RoomCategory
-
-admin.site.register(RoomCategory, RoomCategoryAdmin)
+    list_display_links = ['name']
 
 
+@admin.register(ServiceType)
 class ServiceTypeAdmin(admin.ModelAdmin):
-    list_display = [
-        'id', 'name', 'price'
-    ]
-    list_display_links = [
-        'name'
-    ]
-    class Meta:
-        model = ServiceType
-admin.site.register(ServiceType, ServiceTypeAdmin)
+    list_display = ['id', 'name', 'price']
+    list_display_links = ['name']
 
 
 

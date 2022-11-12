@@ -2,7 +2,7 @@ import keyword
 import string
 
 from django.shortcuts import render, redirect
-from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail
+from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail, GallaryCategory, GallaryDetail
 from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -90,7 +90,7 @@ def contact(request):
         form = ContactModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('myprint:contact')
+            return redirect('myprint:home')
         else:
             form = ContactModelForm()
     context = {
@@ -99,14 +99,21 @@ def contact(request):
     return render(request, 'main/contact.html', context=context)
 
 
-def gallary_details(request):
-    return render(request, 'main/gallary-details.html')
+
 
 def gallary(request):
-    return render(request, 'main/gallary.html')
+    gallary_page = GallaryCategory.objects.all()
+    context = {
+        'gallary_page': gallary_page
+    }
+    return render(request, 'main/gallary.html', context=context)
+
+def gallary_details(request):
+    return render(request, 'main/gallary-datails.html')
 
 
 def guests(request):
+
     return render(request, 'main/guests.html')
 
 def services(request):

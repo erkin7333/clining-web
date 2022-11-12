@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.translation import gettext_lazy as _
 
 
 # Hope Page
@@ -69,26 +69,26 @@ class GallaryDetail(models.Model):
         verbose_name = 'Gallereya tavsilotlari'
 
 #  Xizmatlar
-class CardServices(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.PositiveIntegerField()
-    detail = models.TextField()
-    is_color_activ = models.BooleanField(default=None)
-    def __str__(self):
-        return self.name
-    class Meta:
-        verbose_name = 'Xizmatlar'
-
-
-#
 class SubServices(models.Model):
-    service = models.ForeignKey(CardServices, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    is_exist = models.BooleanField(default=True)
+    name = models.CharField(_('name'), max_length=50)
+    # detail = models.CharField(_('detail'), max_length=65)
+    is_exist = models.BooleanField(_('is_exist'), default=True)
+    def __str__(self):
+        return f"{self.name} | {self.is_exist}"
+
+    class Meta:
+        verbose_name = "Sub Card Xizmatlar"
+
+
+class CardServices(models.Model):
+    service = models.ManyToManyField("SubServices")
+    name = models.CharField(_('name'), max_length=100)
+    price = models.PositiveIntegerField(_('price'), )
+    detail = models.TextField(_('detail'), )
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = "Sub xizmatlar"
+        verbose_name = 'Card Xizmatlar'
 
 class ContactForm(models.Model):
     name = models.CharField(max_length=50)
