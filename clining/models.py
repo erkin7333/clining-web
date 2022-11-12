@@ -102,13 +102,14 @@ class CardServices(models.Model):
         verbose_name = 'Card Xizmatlar'
 
 
-#
 
 
+#forms
 class ContactForm(models.Model):
     name = models.CharField(_('name'), max_length=50)
     email = models.EmailField(_('email'), max_length=60)
-    phone_number = models.IntegerField(_('phone_number'), )
+    phone_number = models.IntegerField(_('phone_number'))
+    description = models.TextField(_('description'), max_length=550)
     def __str__(self):
         return self.name
     class Meta:

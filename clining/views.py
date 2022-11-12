@@ -6,6 +6,7 @@ from .models import *
 from .serializers import ServicePriceSerializers, RoomCategorySerializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .forms import *
 
 
 class RoomCategoryAPIView(APIView):
@@ -52,7 +53,25 @@ class ServicePriceAPIView(APIView):
 
 
 def home(request):
-    return render(request, 'main/index.html')
+    caruselimg = CaruselImage.objects.filter()
+    form = OrderModelForm()
+    if request.method == 'POST':
+        form = OrderModelForm(request.POST)
+        # print("QWERTYTREAWERT------------", form)
+        if form.is_valid():
+            print('AAAAAAAAA------', form)
+            form.save()
+            return redirect('myprint:home')
+        else:
+            print("TTTTTTTTTTTT------------>>>>>>>", form.errors)
+            form = OrderModelForm()
+            print("SSSSSSSSSSSSSS------------>>>>>>>", form.errors)
+    context = {
+        'form': form,
+        'caruselimg': caruselimg,
+
+    }
+    return render(request, 'main/index.html', context=context)
 
 
 def about(request):
@@ -60,7 +79,18 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'main/contact.html')
+    form = ContactModelForm()
+    if request.method == "POST":
+        form = ContactModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('myprint:contact')
+        else:
+            form = ContactModelForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'main/contact.html', context=context)
 
 
 def gallary_details(request):
@@ -82,8 +112,12 @@ def services(request):
 
 
 
-def product_detail(request):
-    return render(request, 'main/product-details.html')
+def product_detail(request, pk):
+    detailCarusel = CaruselDetail.objects.filter(caruselimage_id=pk)
+    context = {
+        'detailCarusel': detailCarusel
+    }
+    return render(request, 'main/product-detail.html', context=context)
 
 # def services(request):
 #     cat = RoomCategory.objects.all()

@@ -53,3 +53,16 @@ admin.site.register(Orders, OrdersAdmin)
 admin.site.register(CardServices)
 admin.site.register(SubServices)
 admin.site.register(Settings)
+class CaruselImageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'image']
+    list_display_links = ['id', 'name']
+    class Meta:
+        model = CaruselImage
+admin.site.register(CaruselImage, CaruselImageAdmin)
+
+class CaruselDetailAdmin(admin.ModelAdmin):
+    list_display = ['id', 'carusel', 'title', 'description']
+    list_display_links = ['id', 'title']
+    class Meta:
+        model = CaruselDetail
+admin.site.register(CaruselDetail, CaruselDetailAdmin)
