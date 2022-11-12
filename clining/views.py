@@ -61,15 +61,11 @@ def home(request):
     form = OrderModelForm()
     if request.method == 'POST':
         form = OrderModelForm(request.POST)
-        # print("QWERTYTREAWERT------------", form)
         if form.is_valid():
-            print('AAAAAAAAA------', form)
             form.save()
             return redirect('myprint:home')
         else:
-            print("TTTTTTTTTTTT------------>>>>>>>", form.errors)
             form = OrderModelForm()
-            print("SSSSSSSSSSSSSS------------>>>>>>>", form.errors)
     context = {
         'form': form,
         'caruselimg': caruselimg,
