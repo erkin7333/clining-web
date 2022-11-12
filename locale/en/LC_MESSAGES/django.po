@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:57+0500\n"
-"PO-Revision-Date: 2022-11-12 00:02+0500\n"
+"POT-Creation-Date: 2022-11-12 12:13+0500\n"
+"PO-Revision-Date: 2022-11-12 12:21+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -20,16 +20,16 @@ msgstr ""
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: .\clining\models.py:8 .\clining\models.py:17 .\clining\models.py:33
-#: .\clining\models.py:62 .\clining\models.py:81 .\clining\models.py:93
-#: .\clining\models.py:101 .\clining\models.py:110 .\clining\models.py:120
+#: .\clining\models.py:62 .\clining\models.py:84 .\clining\models.py:96
+#: .\clining\models.py:109 .\clining\models.py:119 .\clining\models.py:129
 msgid "name"
 msgstr "name"
 
-#: .\clining\models.py:18 .\clining\models.py:102
+#: .\clining\models.py:18 .\clining\models.py:110
 msgid "email"
 msgstr "email"
 
-#: .\clining\models.py:19 .\clining\models.py:103
+#: .\clining\models.py:19 .\clining\models.py:111
 msgid "phone_number"
 msgstr "phone number"
 
@@ -41,7 +41,7 @@ msgstr "image"
 msgid "title"
 msgstr "title"
 
-#: .\clining\models.py:45 .\clining\models.py:73
+#: .\clining\models.py:45 .\clining\models.py:73 .\clining\models.py:112
 msgid "description"
 msgstr "description"
 
@@ -53,52 +53,42 @@ msgstr "key"
 msgid "value"
 msgstr "value"
 
-#: .\clining\models.py:82 .\clining\models.py:111 .\clining\models.py:121
-msgid "price"
-msgstr "price"
-
-#: .\clining\models.py:83
-msgid "detail"
-msgstr "detail"
-
-#: .\clining\models.py:94
+#: .\clining\models.py:86
 msgid "is_exist"
 msgstr ""
 
-#: .\clining\models.py:129
+#: .\clining\models.py:97 .\clining\models.py:120 .\clining\models.py:130
+msgid "price"
+msgstr "price"
+
+#: .\clining\models.py:98
+msgid "detail"
+msgstr "detal"
+
+#: .\clining\models.py:138
 msgid "roomname"
 msgstr "roomname"
 
-#: .\clining\models.py:130
+#: .\clining\models.py:139
 msgid "roomprice"
 msgstr "roomprice"
 
-#: .\clining\models.py:131
+#: .\clining\models.py:140
 msgid "servicename"
 msgstr "servicename"
 
-#: .\clining\models.py:132
+#: .\clining\models.py:141
 msgid "serviceprice"
 msgstr "serviceprice"
-
-#: .\config\settings.py:115
-msgid "English"
-msgstr "En"
-
-#: .\config\settings.py:116
-msgid "Russian"
-msgstr "Ru"
-
-#: .\config\settings.py:117
-msgid "Uzbek"
-msgstr "Uz"
 
 #: .\config\urls.py:26
 msgid "admin/"
 msgstr "admin/"
 
 #: .\templates\base.html:57
-msgid " Working Hours: 8:00 AM – 7:45 PM"
+#, fuzzy
+#| msgid " Working Hours: 8:00 AM – 7:45 PM"
+msgid " Working Hours:   "
 msgstr "Working Hours: 8:00 AM – 7:45 PM"
 
 #: .\templates\base.html:126 .\templates\base.html:213
@@ -138,15 +128,15 @@ msgstr "Quick LInk"
 
 #: .\templates\base.html:216
 msgid " About us"
-msgstr "About us"
+msgstr "Biz Haqimizda"
 
 #: .\templates\base.html:219
 msgid "Compnay History"
-msgstr "Compnay History"
+msgstr "Kampaniya tarixi"
 
 #: .\templates\base.html:222
 msgid "Features"
-msgstr "Features"
+msgstr "Imkoniyatlar"
 
 #: .\templates\base.html:225
 msgid "Blog Page"
@@ -154,11 +144,11 @@ msgstr ""
 
 #: .\templates\base.html:228
 msgid "Login"
-msgstr ""
+msgstr "Kirish"
 
 #: .\templates\base.html:238
 msgid "House Cleaning"
-msgstr ""
+msgstr "Uy tozalash"
 
 #: .\templates\base.html:241
 msgid "Carpet"
@@ -172,7 +162,7 @@ msgstr ""
 msgid "Bedroom"
 msgstr ""
 
-#: .\templates\base.html:250 .\templates\main\services.html:56
+#: .\templates\base.html:250
 msgid "Residential"
 msgstr ""
 
@@ -362,7 +352,7 @@ msgstr ""
 msgid "Get Free Estimate"
 msgstr ""
 
-#: .\templates\main\index.html:150
+#: .\templates\main\index.html:150 .\templates\main\index.html:180
 msgid "One Time / Recurring"
 msgstr ""
 
@@ -408,7 +398,8 @@ msgstr ""
 msgid "Еxpress"
 msgstr ""
 
-#: .\templates\main\index.html:165
+#: .\templates\main\index.html:165 .\templates\main\index.html:195
+#: .\templates\main\index.html:225
 msgid "Free Estimate"
 msgstr ""
 
@@ -417,19 +408,65 @@ msgstr ""
 msgid "<strong><span>29%%</span> Off</strong> For the new customers"
 msgstr ""
 
-#: .\templates\main\index.html:272
-msgid "Get Estimate "
+#: .\templates\main\index.html:181
+msgid "Commercial Cleaning"
 msgstr ""
 
-#: .\templates\main\index.html:295
+#: .\templates\main\index.html:183
+msgid ""
+"Prevailed mr tolerably discourse assurance estimable applauded to points."
+msgstr ""
+
+#: .\templates\main\index.html:186
+msgid "Office"
+msgstr ""
+
+#: .\templates\main\index.html:187
+msgid "Shops"
+msgstr ""
+
+#: .\templates\main\index.html:188
+msgid "Medical facilities"
+msgstr ""
+
+#: .\templates\main\index.html:189
+msgid "Factories"
+msgstr ""
+
+#: .\templates\main\index.html:190
+msgid "Restaurants"
+msgstr ""
+
+#: .\templates\main\index.html:191
+msgid "Airports"
+msgstr ""
+
+#: .\templates\main\index.html:192
+msgid "Government facilities"
+msgstr ""
+
+#: .\templates\main\index.html:193
+msgid "Showrooms"
+msgstr ""
+
+#: .\templates\main\index.html:200
+#, python-format
+msgid "<strong><span>38%%</span> Off</strong> For the new customers"
+msgstr ""
+
+#: .\templates\main\index.html:227
+msgid "Get a quick response within 24 hours"
+msgstr ""
+
+#: .\templates\main\index.html:289
 msgid "Successful Project"
 msgstr ""
 
-#: .\templates\main\index.html:297
+#: .\templates\main\index.html:291
 msgid "Keep your vision to our latest projects. "
 msgstr ""
 
-#: .\templates\main\index.html:302
+#: .\templates\main\index.html:296
 msgid ""
 "Everything melancholy uncommonly but solicitude inhabiting projection off. "
 "Connection stimulated estimating excellence an to impression. Prevailed mr "
@@ -437,14 +474,11 @@ msgid ""
 "melancholy uncommonly but solicitude inhabiting projection."
 msgstr ""
 
-#: .\templates\main\services.html:40
-msgid "Quality leader among cleaning <br> Companies in the industry!"
-msgstr ""
+#~ msgid "English"
+#~ msgstr "En"
 
-#: .\templates\main\services.html:142
-msgid "Создай свой тариф"
-msgstr ""
+#~ msgid "Russian"
+#~ msgstr "Ru"
 
-#: .\templates\main\services.html:144
-msgid "Get a quick response within 24 hours"
-msgstr ""
+#~ msgid "Uzbek"
+#~ msgstr "Uz"

@@ -52,7 +52,7 @@
                                             <h4 data-animation="animated slideInRight">{% trans "Professional Sanitizing" %}</h4>
                                             <h2 data-animation="animated slideInLeft">{% trans "Disinfecting & Deodorizing Spray Services" %}</h2>
                                             <div class="bottom" data-animation="animated slideInUp">
-                                                <a class="btn btn-theme primary effect btn-md" href="#">{% trans "Book a Schedule" %}</a>
+                                                <a class="btn btn-theme primary effect btn-md" href="{% url 'myprint:contact' %}">{% trans "Book a Schedule" %}</a>
                                                  <a href="{{youtube}}" class="popup-youtube theme secondary relative video-play-button">
                                                     <i class="fa fa-play"></i>
                                                 </a>
@@ -110,7 +110,7 @@
                         </p>
                         <div class="bottom-info">
                             <div class="button">
-                                <a data-animation="animated zoomInUp" class="btn btn-theme primary effect btn-md" href="#">{% trans "Contact Us" %}</a>
+                                <a data-animation="animated zoomInUp" class="btn btn-theme primary effect btn-md" href="{% url 'myprint:contact' %}">{% trans "Contact Us" %}</a>
                             </div>
                             <div class="contact">
                                 <div class="content">
@@ -177,27 +177,27 @@
                         <div class="item">
                             <div class="row align-center">
                                 <div class="col-lg-6 content">
-                                    <h5>One Time / Recurring</h5>
-                                    <h2>Commercial Cleaning</h2>
+                                    <h5>{% trans "One Time / Recurring" %}</h5>
+                                    <h2>{% trans "Commercial Cleaning" %}</h2>
                                     <p>
-                                        Prevailed mr tolerably discourse assurance estimable applauded to points.
+                                        {% trans "Prevailed mr tolerably discourse assurance estimable applauded to points." %}
                                     </p>
                                     <ul>
-                                        <li>Office</li>
-                                        <li>Shops</li>
-                                        <li>Medical facilities</li>
-                                        <li>Factories</li>
-                                        <li>Restaurants</li>
-                                        <li>Airports</li>
-                                        <li>Government facilities</li>
-                                        <li>Showrooms</li>
+                                        <li>{% trans "Office" %}</li>
+                                        <li>{% trans "Shops" %}</li>
+                                        <li>{% trans "Medical facilities" %}</li>
+                                        <li>{% trans "Factories" %}</li>
+                                        <li>{% trans "Restaurants" %}</li>
+                                        <li>{% trans "Airports" %}</li>
+                                        <li>{% trans "Government facilities" %}</li>
+                                        <li>{% trans "Showrooms" %}</li>
                                     </ul>
-                                    <a class="btn btn-theme secondary effect btn-md" href="contact.html">Free Estimate</a>
+                                    <a class="btn btn-theme secondary effect btn-md" href="{% url 'myprint:contact' %}">{% trans "Free Estimate" %}</a>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="thumb">
                                         <img src="{% static 'img/services/8.jpg' %}" alt="Thumb">
-                                        <h4><strong><span>38%</span> Off</strong> For the new customers</h4>
+                                        <h4>{% trans "<strong><span>38%</span> Off</strong> For the new customers" %}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -222,9 +222,9 @@
                 </div>
                 <div class="col-lg-5 offset-lg-1 form-content">
                     <div class="form-items">
-                        <h2>Free Estimate</h2>
+                        <h2>{% trans "Free Estimate" %}</h2>
                         <p>
-                            Get a quick response within 24 hours
+                            {% trans "Get a quick response within 24 hours" %}
                         </p>
 
                         <form action="" method="POST">
