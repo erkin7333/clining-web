@@ -139,5 +139,7 @@ class Orders(models.Model):
     roomprice = models.PositiveIntegerField(_('roomprice'), )
     servicename = models.CharField(_('servicename'), max_length=100)
     serviceprice = models.PositiveIntegerField(_('serviceprice'), )
+    total = models.PositiveIntegerField(_('total'), )
+    
     def __str__(self):
         return f"{str(self.roomname)} {str(self.roomprice)}"

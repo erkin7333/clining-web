@@ -15,8 +15,10 @@ class RoomCategoryAPIView(APIView):
             'categoryroom': RoomCategorySerializers(RoomCategory.objects.all(), many=True).data
         })
 
+    
+    
     def post(self, request):
-        data = RoomCategorySerializers(data=request.data)
+        data = OrdersSerialiser(data=request.data)
         if data.is_valid():
             return Response({
                 'status': "Post qo'shildi",
@@ -25,8 +27,9 @@ class RoomCategoryAPIView(APIView):
         data.save()
         return Response({
             'status': 'success',
-            'data': RoomCategorySerializers(data.instance).data
+            'data': OrdersSerialiser(data.instance).data
         })
+
 
 
 class ServicePriceAPIView(APIView):
@@ -34,19 +37,20 @@ class ServicePriceAPIView(APIView):
         return Response({
             'servicecategoryprice': ServicePriceSerializers(ServiceType.objects.all(), many=True).data
         })
-
+    
     def post(self, request):
-        data = ServicePriceSerializers(data=request.data)
+        data = OrdersSerialiser(data=request.data)
         if data.is_valid():
             return Response({
                 'status': "Post qo'shildi",
                 'data': data.errors
             })
         data.save()
-        return Response({ 
+        return Response({
             'status': 'success',
-            'data': ServicePriceSerializers(data.instance).data
+            'data': OrdersSerialiser(data.instance).data
         })
+
 
 
 
@@ -119,42 +123,5 @@ def product_detail(request, pk):
     }
     return render(request, 'main/product-details.html', context=context)
 
-# def services(request):
-#     cat = RoomCategory.objects.all()
-#     pr = Price.objects.all()
-#     if request.method == "POST":
-#         check = request.POST.getlist('checks[]')
-#         option = request.POST.getlist('option[]')
-#         print("WWWWWWWWWWW_______>>>>>>>>>", check)
-#         print("OOOOOOOOOOO_______>>>>>>>>>", option)
-#         # req_obj = Orders.objects.create(nameroom=option, nameservice=check)
-#         # req_obj.save()
-#         return redirect('myprint:services')
-#     context = {
-#         'cat': cat,
-#         'pr': pr
-#     }
-#     return render(request, 'main/services.html', context=context)
 
 
-# def services(request):
-#     cat = RoomCategory.objects.all()
-#     pr = Price.objects.all()
-#     if request.method == "POST":
-#         services = request.POST.getlist()
-#         house = request.POST.get('option[]').split("-")
-#         print("aaaaaaaaaaaa-------------", house)
-#         house_name = house[0]
-#         house_price = int(house[1])
-#         for service in services:
-#             service = service.split("-")
-#             service_name = service[0]
-#             service_price = service[1]
-#             new_order = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=service_name, serviceprice=service_price)
-#             new_order.save()
-#         return redirect('myprint:services')
-#     context = {
-#         'cat': cat,
-#         'pr': pr
-#     }
-#     return render(request, 'main/services.html', context=context)
