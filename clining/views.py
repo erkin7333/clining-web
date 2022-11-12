@@ -113,11 +113,11 @@ def services(request):
 
 
 def product_detail(request, pk):
-    detailCarusel = CaruselDetail.objects.filter(caruselimage_id=pk)
+    detailCarusel = CaruselDetail.objects.filter(carusel_id=pk)
     context = {
         'detailCarusel': detailCarusel
     }
-    return render(request, 'main/product-detail.html', context=context)
+    return render(request, 'main/product-details.html', context=context)
 
 # def services(request):
 #     cat = RoomCategory.objects.all()

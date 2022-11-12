@@ -153,7 +153,7 @@
                                         <li style="width: 80px; display: flex; padding: 0px;" class="side-menu">
                                             {% for lang_code, lang_name in languages %}
                                                 {% language lang_code %}
-                                                    <button type="submit"><a href="/{{ lang_code }}">{{ lang_name }}</a></button>
+                                                    <button type="submit" class="btn btn-light ml-2"><a href="/{{ lang_code }}">{{ lang_name }}</a></button>
                                                 {% endlanguage %}
                                             {% endfor %}
                                         </li>

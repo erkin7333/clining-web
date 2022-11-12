@@ -31,7 +31,7 @@
                                             <h2 data-animation="animated slideInLeft">{% trans "Amazing quality cleaning service agency" %}</h2>
                                             <div class="bottom" data-animation="animated slideInUp">
                                                 <a class="btn btn-theme primary effect btn-md" href="#">{% trans "Book a Schedule" %}</a>
-                                                 <a href="https://www.youtube.com/watch?v=owhuBrGIOsE" class="popup-youtube secondary theme relative video-play-button">
+                                                 <a href="{{youtube}}" class="popup-youtube secondary theme relative video-play-button">
                                                     <i class="fa fa-play"></i>
                                                 </a>
                                             </div>  
@@ -53,7 +53,7 @@
                                             <h2 data-animation="animated slideInLeft">{% trans "Disinfecting & Deodorizing Spray Services" %}</h2>
                                             <div class="bottom" data-animation="animated slideInUp">
                                                 <a class="btn btn-theme primary effect btn-md" href="#">{% trans "Book a Schedule" %}</a>
-                                                 <a href="https://www.youtube.com/watch?v=owhuBrGIOsE" class="popup-youtube theme secondary relative video-play-button">
+                                                 <a href="{{youtube}}" class="popup-youtube theme secondary relative video-play-button">
                                                     <i class="fa fa-play"></i>
                                                 </a>
                                             </div>  
@@ -162,7 +162,7 @@
                                         <li>{% trans "Post construction" %}</li>
                                         <li>{% trans "Еxpress" %}</li>
                                     </ul>
-                                    <a class="btn btn-theme secondary effect btn-md" href="contact.html">{% trans "Free Estimate" %}</a>
+                                    <a class="btn btn-theme secondary effect btn-md" href="{% url 'myprint:contact' %}">{% trans "Free Estimate" %}</a>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="thumb">

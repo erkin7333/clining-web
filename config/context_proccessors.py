@@ -10,4 +10,5 @@ def all_category(request):
         "facebook":Settings.objects.get(key='facebook').value,
         "telegram":Settings.objects.get(key='telegram').value,
         "instagram":Settings.objects.get(key='instagram').value,
+        "youtube":Settings.objects.get(key='youtube').value,
     }
