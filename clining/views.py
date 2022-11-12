@@ -42,7 +42,7 @@ class ServicePriceAPIView(APIView):
                 'data': data.errors
             })
         data.save()
-        return Response({
+        return Response({ 
             'status': 'success',
             'data': ServicePriceSerializers(data.instance).data
         })
@@ -74,7 +74,10 @@ def guests(request):
     return render(request, 'main/guests.html')
 
 def services(request):
-    return render(request, 'main/services.html')
+    card1 = CardServices.objects.all()
+    card = SubServices.objects.all()
+    context = {'card': card, 'card1': card1}
+    return render(request, 'main/services.html', context)
 
 
 

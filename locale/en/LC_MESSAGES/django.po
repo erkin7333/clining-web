@@ -2,63 +2,64 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-11 14:57+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2022-11-12 00:02+0500\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: .\clining\models.py:8 .\clining\models.py:17 .\clining\models.py:33
 #: .\clining\models.py:62 .\clining\models.py:81 .\clining\models.py:93
 #: .\clining\models.py:101 .\clining\models.py:110 .\clining\models.py:120
 msgid "name"
-msgstr ""
+msgstr "name"
 
 #: .\clining\models.py:18 .\clining\models.py:102
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: .\clining\models.py:19 .\clining\models.py:103
 msgid "phone_number"
-msgstr ""
+msgstr "phone number"
 
 #: .\clining\models.py:34 .\clining\models.py:63
 msgid "image"
-msgstr ""
+msgstr "image"
 
 #: .\clining\models.py:44 .\clining\models.py:72
 msgid "title"
-msgstr ""
+msgstr "title"
 
 #: .\clining\models.py:45 .\clining\models.py:73
 msgid "description"
-msgstr ""
+msgstr "description"
 
 #: .\clining\models.py:53
 msgid "key"
-msgstr ""
+msgstr "key"
 
 #: .\clining\models.py:54
 msgid "value"
-msgstr ""
+msgstr "value"
 
 #: .\clining\models.py:82 .\clining\models.py:111 .\clining\models.py:121
 msgid "price"
-msgstr ""
+msgstr "price"
 
 #: .\clining\models.py:83
 msgid "detail"
-msgstr ""
+msgstr "detail"
 
 #: .\clining\models.py:94
 msgid "is_exist"
@@ -66,84 +67,86 @@ msgstr ""
 
 #: .\clining\models.py:129
 msgid "roomname"
-msgstr ""
+msgstr "roomname"
 
 #: .\clining\models.py:130
 msgid "roomprice"
-msgstr ""
+msgstr "roomprice"
 
 #: .\clining\models.py:131
 msgid "servicename"
-msgstr ""
+msgstr "servicename"
 
 #: .\clining\models.py:132
 msgid "serviceprice"
-msgstr ""
+msgstr "serviceprice"
 
 #: .\config\settings.py:115
 msgid "English"
-msgstr ""
+msgstr "En"
 
 #: .\config\settings.py:116
 msgid "Russian"
-msgstr ""
+msgstr "Ru"
 
 #: .\config\settings.py:117
 msgid "Uzbek"
-msgstr ""
+msgstr "Uz"
 
 #: .\config\urls.py:26
 msgid "admin/"
-msgstr ""
+msgstr "admin/"
 
 #: .\templates\base.html:57
 msgid " Working Hours: 8:00 AM – 7:45 PM"
-msgstr ""
+msgstr "Working Hours: 8:00 AM – 7:45 PM"
 
 #: .\templates\base.html:126 .\templates\base.html:213
 #: .\templates\main\about.html:14 .\templates\main\gallary.html:13
 #: .\templates\main\services.html:13
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: .\templates\base.html:130
 msgid "About us"
-msgstr ""
+msgstr "About us"
 
 #: .\templates\base.html:134
 msgid "Gallary"
-msgstr ""
+msgstr "Gallary"
 
 #: .\templates\base.html:138 .\templates\base.html:235
 #: .\templates\main\services.html:14
 msgid "Services"
-msgstr ""
+msgstr "Services"
 
 #: .\templates\base.html:142
 msgid "contact"
-msgstr ""
+msgstr "Contact"
 
 #: .\templates\base.html:200
 msgid ""
 "Excellence decisively nay man yet impression for contrasted remarkably. "
 "There spoke happy for you are out. Fertile how old address did showing."
 msgstr ""
+"Excellence decisively nay man yet impression for contrasted remarkably. "
+"There spoke happy for you are out. Fertile how old address did showing."
 
 #: .\templates\base.html:210
 msgid "Quick LInk"
-msgstr ""
+msgstr "Quick LInk"
 
 #: .\templates\base.html:216
 msgid " About us"
-msgstr ""
+msgstr "About us"
 
 #: .\templates\base.html:219
 msgid "Compnay History"
-msgstr ""
+msgstr "Compnay History"
 
 #: .\templates\base.html:222
 msgid "Features"
-msgstr ""
+msgstr "Features"
 
 #: .\templates\base.html:225
 msgid "Blog Page"
@@ -187,11 +190,11 @@ msgstr ""
 
 #: .\templates\base.html:271
 msgid "Opening Hours:"
-msgstr ""
+msgstr "Opening Hours:"
 
 #: .\templates\base.html:279
 msgid "Phone:"
-msgstr ""
+msgstr "Phone:"
 
 #: .\templates\base.html:296
 msgid "&copy; Copyright 2022. All Rights Reserved by "
@@ -199,19 +202,19 @@ msgstr ""
 
 #: .\templates\base.html:301
 msgid "Terms"
-msgstr ""
+msgstr "Terms"
 
 #: .\templates\base.html:304
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: .\templates\base.html:307
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: .\templates\main\about.html:15
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: .\templates\main\about.html:34
 msgid "50"
