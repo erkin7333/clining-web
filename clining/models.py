@@ -77,7 +77,22 @@ class GallaryDetail(models.Model):
         verbose_name = 'Gallery Detail'
 
 #  Xizmatlar
+
+
+
+class SubServices(models.Model):
+    name = models.CharField(_('name'), max_length=50)
+    # detail = models.CharField(_('detail'), max_length=65)
+    is_exist = models.BooleanField(_('is_exist'), default=True)
+    def __str__(self):
+        return f"{self.name} | {self.is_exist}"
+
+    class Meta:
+        verbose_name = "Sub Card Xizmatlar"
+
+
 class CardServices(models.Model):
+    service = models.ManyToManyField(SubServices)
     name = models.CharField(_('name'), max_length=100)
     price = models.PositiveIntegerField(_('price'), )
     detail = models.TextField(_('detail'), )
@@ -88,14 +103,7 @@ class CardServices(models.Model):
 
 
 #
-class SubServices(models.Model):
-    service = models.ForeignKey(CardServices, on_delete=models.CASCADE)
-    name = models.CharField(_('name'), max_length=50)
-    is_exist = models.BooleanField(_('is_exist'), default=True)
-    def __str__(self):
-        return self.name
-    class Meta:
-        verbose_name = "Sub Card Xizmatlar"
+
 
 class ContactForm(models.Model):
     name = models.CharField(_('name'), max_length=50)

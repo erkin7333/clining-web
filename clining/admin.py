@@ -43,10 +43,13 @@ admin.site.register(Orders, OrdersAdmin)
 
 ### inline  formsets
 
-class ServiceIneLineAdmin(admin.TabularInline):
-    model = SubServices
+# class ServiceIneLineAdmin(admin.TabularInline):
+#     model = CardServices
 
-class AuthorAdmin(admin.ModelAdmin):
-    inlines = [ServiceIneLineAdmin]
+# class AuthorAdmin(admin.ModelAdmin):
+#     inlines = [ServiceIneLineAdmin]
 
-admin.site.register(CardServices, AuthorAdmin)
+# admin.site.register(SubServices, AuthorAdmin)
+admin.site.register(CardServices)
+admin.site.register(SubServices)
+admin.site.register(Settings)

@@ -54,23 +54,23 @@
                 <div class="col-lg-9 info item-flex space-between">
                      <ul>
                         <li>
-                            <i class="fas fa-clock"></i>{% trans " Working Hours: 8:00 AM – 7:45 PM" %}
+                            <i class="fas fa-clock"></i>{% trans " Working Hours:   " %}  {{openhour}}
                         </li>
                     </ul>
                     <div class="social">
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="{{facebook}}">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{instagram}}">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{telegram}}">
                                     <i class="fab fa-telegram-plane"></i>
                                 </a>
                             </li>
@@ -153,7 +153,7 @@
                                         <li style="width: 80px; display: flex; padding: 0px;" class="side-menu">
                                             {% for lang_code, lang_name in languages %}
                                                 {% language lang_code %}
-                                                    <a href="/{{ lang_code }}">{{ lang_name }}</a>
+                                                    <button type="submit"><a href="/{{ lang_code }}">{{ lang_name }}</a></button>
                                                 {% endlanguage %}
                                             {% endfor %}
                                         </li>
@@ -268,7 +268,7 @@
                                             <i class="fas fa-clock"></i>
                                         </div>
                                         <div class="content">
-                                            <strong>{% trans "Opening Hours:"%}</strong>#######
+                                            <strong>{% trans "Opening Hours:"%}</strong>{{openhour}}
                                         </div>
                                     </li>
                                     <li>
@@ -277,7 +277,7 @@
                                         </div>
                                         <div class="content">
                                             <strong>{% trans "Phone:" %}</strong>
-                                            <a href="tel:2151234567">########</a>
+                                            <a href="tel:{{phone}}">{{phone}}</a>
                                         </div>
                                     </li>
                                 </ul>

@@ -74,9 +74,9 @@ def guests(request):
     return render(request, 'main/guests.html')
 
 def services(request):
-    card1 = CardServices.objects.all()
-    card = SubServices.objects.all()
-    context = {'card': card, 'card1': card1}
+    card = CardServices.objects.all()
+        
+    context = {'card': card,}
     return render(request, 'main/services.html', context)
 
 
