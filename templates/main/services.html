@@ -99,17 +99,21 @@
                         <form method="POST">
                            {% csrf_token %}
                            <div class="form-box">
-                            <select id="">
+
+                                <select id="">
+                                    {% for rm in room %}
+                                        <option name="{{rm.name}}" value="{{rm.price}}">{{rm.name}}</option>
+                                    {% endfor %}
+                                </select>
+
                                 {% for rm in room %}
-                                    <option name="{{rm.name}}" value="{{rm.price}}">{{rm.name}}</option>
+                                    {% for r in rm.service.all %}
+                                        <div class="form-checkbox">
+                                            <input type="checkbox"  class="rate__input" id="{{r.id}} value={{r.name}}">
+                                            <label for="{{r.name}}"  name="{{r.price}}" class="rate__lable">{{r.name}}</label>
+                                        </div>
+                                    {% endfor %}
                                 {% endfor %}
-                            </select>
-                            {% for sr in service %}
-                            <div class="form-checkbox">
-                                <input type="checkbox"  class="rate__input" id="{{sr.id}} value={{sr.name}}">
-                                <label for="{{sr.name}}"  name="{{sr.price}}" class="rate__lable">{{sr.name}}</label>
-                            </div>
-                            {% endfor %}
                            </div>
                            <div class="row" style="margin-top: 25px;">
                             <div class="col-lg-12">
