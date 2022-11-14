@@ -146,11 +146,23 @@
                         <p>
                             Get a quick response within 24 hours
                         </p>
-                        <form method="POST">
+                       <form method="POST">
                             {% csrf_token %}
                             <div class="form-box">
-                                <select class="select__options"></select>
+
+                                <select name="option[]">
+                                    {% for rm in cat %}
+                                    <option value="{{rm.name}}-{{rm.price}}">{{rm.name}} {{rm.price}}</option>
+                                    {% endfor %}
+                                </select>
+                                {% for sr in pr %}
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="checkbox_1" name="checks[]" class="checkbox" value="{{sr.name}}-{{sr.price}}">
+                                    <label for="checkbox_1"  class="rate__lable">{{sr.name}} {{sr.price}}</label>
+                                </div>
+                                {% endfor %}
                             </div>
+
 
                             <div class="row" style="margin-top: 25px;">
                                 <div class="col-lg-12">
@@ -160,9 +172,7 @@
                                 </div>
                             </div>
                             <div class="form-price">
-                                <h2>
-                                    <input type="text" id="chktext">
-                                </h2>
+                                <h2><span>--</span></h2>
                             </div>
                         </form>
                     </div>
@@ -174,31 +184,77 @@
 {% endblock content %}
 {% block script %}
     <script>
+        const result = document.querySelector(".form-price h2");
+        const calculateButton = document.querySelector(".calculate__button");
         const baseUrl = location.origin;
         const parentDiv = document.querySelector(".form-box");
         const select = document.querySelector(".select__options");
-        fetch(`${baseUrl}/roomcategory/`)
-            .then(res => res.json())
-            .then(res => {
-                    if (select) {
-                        res.categoryroom.forEach(item => {
-                            const optionElem = document.createElement("option");
-                            optionElem.value = item.price;
-                            optionElem.innerText = item.name
-                            select.appendChild(optionElem);
-                            $(".select__options").niceSelect("update");
-                        })
+        const selectOption = document.querySelector(".select__calc");
+        const inputCalc = document.querySelectorAll(".input__calc");
+        const forms = document.querySelector('form')
+
+
+        //culc
+        function calcTotal(e) {
+            e.preventDefault();
+            const prices = [select__calc.value];
+            inputCalc.forEach(item => {
+                if (item.checked) {
+                    return prices.push(item.value);
+                }
+            });
+
+            const totalPrice = prices.reduce((prevValue, currenValue) => Number(prevValue) + Number(currenValue), 0);
+
+            result.innerText = totalPrice;
+        }
+
+        calculateButton.addEventListener("click", calcTotal);
+
+        const obj = {
+            roomname: "",
+            roomprice: 1200,
+            services: [
+                {name: "Sanuzel", price: 15000}
+            ],
+            totalPrice;
+        }
+
+        function postData(form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+
+                const statusMessage = document.createElement('div')
+                statusMessage.classList.add('status');
+                statusMessage.textContent = message.loading;
+                form.append(statusMessage);
+
+                const request = new XMLHttpRequest();
+                request.open('POST', 'serviceprice');
+
+                // request.setRequestHeader('Content-type' , 'miltipart/form-data')
+                const formData = new FormData(form);
+
+                request.send(formData);
+
+                request.addEventListener('load', () => {
+                    if (request.status === 200) {
+                        console.log(request.response);
+                        statusMessage.textContent = message.success;
+                    } else {
+
+                        statusMessage.textContent = message.failure;
                     }
-                }
-            )
-            .catch(err => console.log(err))
-        fetch(`${baseUrl}/serviceprice/`)
-            .then(res => res.json())
-            .then(res => {
-                    console.log(res);
-                }
-            )
-            .catch(err => console.log(err))
+                })
+            });
+        }
+
+        const message = {
+            loading: 'Loading',
+            success: 'Thank you, we will contact you soon',
+            failure: 'Fail '
+        }
 
     </script>
 {% endblock %}

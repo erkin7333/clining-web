@@ -2,7 +2,7 @@ import keyword
 import string
 
 from django.shortcuts import render, redirect
-from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail, GallaryCategory, GallaryDetail
+from .models import RoomCategory, ServiceType, CaruselImage, CaruselDetail, GallaryCategory, GallaryDetail, Orders
 from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -116,8 +116,8 @@ def guests(request):
 
     return render(request, 'main/guests.html')
 
-def services(request):
-    return render(request, 'main/services.html')
+# def services(request):
+#     return render(request, 'main/services.html')
 
 # def services(request):
 #     cat = RoomCategory.objects.all()
@@ -137,24 +137,24 @@ def services(request):
 #     return render(request, 'main/services.html', context=context)
 
 
-# def services(request):
-#     cat = RoomCategory.objects.all()
-#     pr = Price.objects.all()
-#     if request.method == "POST":
-#         services = request.POST.getlist()
-#         house = request.POST.get('option[]').split("-")
-#         print("aaaaaaaaaaaa-------------", house)
-#         house_name = house[0]
-#         house_price = int(house[1])
-#         for service in services:
-#             service = service.split("-")
-#             service_name = service[0]
-#             service_price = service[1]
-#             new_order = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=service_name, serviceprice=service_price)
-#             new_order.save()
-#         return redirect('myprint:services')
-#     context = {
-#         'cat': cat,
-#         'pr': pr
-#     }
-#     return render(request, 'main/services.html', context=context)
+def services(request):
+    cat = RoomCategory.objects.all()
+    pr = ServiceType.objects.all()
+    if request.method == "POST":
+        services = request.POST.getlist('checks[]')
+        house = request.POST.get('option[]').split("-")
+        print("aaaaaaaaaaaa-------------", house)
+        house_name = house[0]
+        house_price = int(house[1])
+        for service in services:
+            service = service.split("-")
+            service_name = service[0]
+            service_price = service[1]
+            new_order = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=service_name, serviceprice=service_price)
+            new_order.save()
+        return redirect('myprint:services')
+    context = {
+        'cat': cat,
+        'pr': pr
+    }
+    return render(request, 'main/services.html', context=context)
