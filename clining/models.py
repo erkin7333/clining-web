@@ -156,7 +156,7 @@ class Service(models.Model):
         verbose_name = "Xizmat kursatish turlari"
 
 
-class RoomCategory(models.Model):
+class Room(models.Model):
     name = models.CharField(_('name'), max_length=100, blank=True, null=True)
     price = models.PositiveIntegerField(_('price'), )
     
@@ -167,12 +167,24 @@ class RoomCategory(models.Model):
         verbose_name = "Xona turlari"
 
 
+# class Order(models.Model):
+#     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='room_type')
+#     service = models.ManyToManyField(Service, blank=True)
+#     total = models.PositiveIntegerField()
+    
+#     def __str__(self):
+#         return f"{str(self.room)} {str(self.total)}"
+
 class Orders(models.Model):
-    room = models.ForeignKey(RoomCategory, on_delete=models.CASCADE, related_name='room_type')
-    service = models.ManyToManyField(Service, blank=True)
-    total = models.ForeignKey(RoomCategory, on_delete=models.CASCADE, related_name='total_sum')  # 150
+    roomname = models.CharField(max_length=100, blank=True, null=True)
+    roomprice = models.PositiveIntegerField()
+    servicename = models.CharField(max_length=100, blank=True, null=True)
+    serviceprice = models.PositiveIntegerField()
     
     def __str__(self):
-        return f"{str(self.room)} {str(self.total)}"
+        return f"{str(self.roomname)} {str(self.roomprice)}"
 
     
+class OrderItem(models.Model):
+    room = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='order_one_room')
+    service = models.ManyToManyField(Orders)

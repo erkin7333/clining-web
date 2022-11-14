@@ -97,34 +97,33 @@
 
                         <!-- forma -->
                         <form method="POST">
-                           {% csrf_token %}
-                           <div class="form-box">
+                            {% csrf_token %}
+                            <div class="form-box">
 
-                                <select id="">
-                                    {% for rm in room %}
-                                        <option name="{{rm.name}}" value="{{rm.price}}">{{rm.name}}</option>
+                                <select name="option[]">
+                                    {% for rm in cat %}
+                                    <option value="{{rm.name}}-{{rm.price}}">{{rm.name}}</option>
                                     {% endfor %}
                                 </select>
-
-                                {% for rm in room %}
-                                    {% for r in rm.service.all %}
-                                        <div class="form-checkbox">
-                                            <input type="checkbox"  class="rate__input" id="{{r.id}} value={{r.name}}">
-                                            <label for="{{r.name}}"  name="{{r.price}}" class="rate__lable">{{r.name}}</label>
-                                        </div>
-                                    {% endfor %}
+                                {% for sr in pr %}
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="checkbox_1" name="checks[]" class="checkbox" value="{{sr.name}}-{{sr.price}}">
+                                    <label for="checkbox_1"  class="rate__lable">{{sr.name}}</label>
+                                </div>
                                 {% endfor %}
-                           </div>
-                           <div class="row" style="margin-top: 25px;">
-                            <div class="col-lg-12">
-                                <button class="btn-animation dark border" type="submit" name="submit" id="submit">
-                                    <span>Get it <i class="fas fa-angle-right"></i></span>
-                                </button>
                             </div>
-                        </div>
-                        <div class="form-price">
-                            <h2>--  </span></h2>
-                        </div>
+
+
+                            <div class="row" style="margin-top: 25px;">
+                                <div class="col-lg-12">
+                                    <button class="btn-animation dark border" type="submit" name="submit" id="submit">
+                                        <span>Get it <i class="fas fa-angle-right"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-price">
+                                <h2><span>--</span></h2>
+                            </div>
                         </form>
 
                         <!-- forma -->
