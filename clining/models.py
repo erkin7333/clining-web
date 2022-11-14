@@ -167,13 +167,13 @@ class Room(models.Model):
         verbose_name = "Xona turlari"
 
 
-# class Order(models.Model):
-#     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='room_type')
-#     service = models.ManyToManyField(Service, blank=True)
-#     total = models.PositiveIntegerField()
+class Order(models.Model):
+    room = models.CharField(max_length=100, blank=True, null=True)
+    service = models.ManyToManyField(Service, blank=True)
+    total = models.PositiveIntegerField()
     
-#     def __str__(self):
-#         return f"{str(self.room)} {str(self.total)}"
+    def __str__(self):
+        return f"{str(self.room)} {str(self.total)}"
 
 class Orders(models.Model):
     roomname = models.CharField(max_length=100, blank=True, null=True)
