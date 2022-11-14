@@ -168,12 +168,13 @@ class Room(models.Model):
 
 
 class Order(models.Model):
-    room = models.CharField(max_length=100, blank=True, null=True)
+    roomname = models.CharField(max_length=100, blank=True, null=True)
+    roomprice = models.PositiveIntegerField()
     service = models.ManyToManyField(Service, blank=True)
-    total = models.PositiveIntegerField()
+    total = models.PositiveIntegerField(blank=True, null=True)
     
     def __str__(self):
-        return f"{str(self.room)} {str(self.total)}"
+        return f"{str(self.roomname)} {str(self.roomprice)}"
 
 class Orders(models.Model):
     roomname = models.CharField(max_length=100, blank=True, null=True)
