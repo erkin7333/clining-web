@@ -102,13 +102,13 @@
 
                                 <select name="option[]">
                                     {% for rm in cat %}
-                                    <option  value="{{rm.name}}-{{rm.price}}">{{rm.name}}</option>
+                                    <option value="{{rm.name}}-{{rm.price}}">{{rm.name}} {{rm.price}}</option>
                                     {% endfor %}
                                 </select>
-                                {% for sr in pr %}
+                                {% for sr in servic %}
                                 <div class="form-checkbox">
                                     <input type="checkbox" id="checkbox_1" name="checks[]" class="checkbox" value="{{sr.name}}-{{sr.price}}">
-                                    <label for="checkbox_1"  class="rate__lable">{{sr.name}}</label>
+                                    <label for="checkbox_1"  class="rate__lable">{{sr.name}} {{sr.price}}</label>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -125,8 +125,6 @@
                                 <h2><span>--</span></h2>
                             </div>
                         </form>
-
-                        <!-- forma -->
 
 
                     </div>
