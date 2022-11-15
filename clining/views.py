@@ -290,17 +290,15 @@ def services(request):
     cat = Room.objects.all()
     servic = Service.objects.all()
     if request.method == "POST":
+        total = 0
         services = request.POST.getlist('checks[]')
         house = request.POST.get('option[]').split("-")
-        print("aaaaaaaaaaaa-------------", house)
         house_name = house[0]
         house_price = int(house[1])
-        for service in services:
-            service = service.split("-")
-            service_name = service[0]
-            service_price = service[1]
-            new_order = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=service_name, serviceprice=service_price)
-            new_order.save()
+        total += house_price + services.price
+        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services, totl=total)
+        house.save()
+            
         return redirect('myprint:services')
     context = {
         'cat': cat,

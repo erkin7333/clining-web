@@ -193,9 +193,9 @@ class Total(models.Model):
 
 class Orders(models.Model):
     roomname = models.CharField(max_length=100, blank=True, null=True)
-    roomprice = models.IntegerField()
+    roomprice = models.IntegerField(blank=True, null=True)
     servicename = models.CharField(max_length=100, blank=True, null=True)
-    serviceprice = models.IntegerField(blank=True, null=True)
+    # serviceprice = models.IntegerField(blank=True, null=True)
     totl = models.ForeignKey(Total, on_delete=models.CASCADE, blank=True, null=True)
     
     def __str__(self):

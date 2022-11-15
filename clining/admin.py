@@ -9,7 +9,7 @@ admin.site.register(Service)
 admin.site.register(Room)
 class OrdersAdmin(admin.ModelAdmin):
     list_display = [
-        'roomname', 'roomprice', 'servicename', 'serviceprice'
+        'roomname','roomprice','servicename'
     ]
     class Meta:
         model = Orders
