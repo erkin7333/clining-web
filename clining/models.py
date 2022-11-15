@@ -144,7 +144,10 @@ class ContactForm(models.Model):
 #     def __str__(self):
 #         return f"{str(self.roomname)} {str(self.roomprice)}"
 
-
+# qani bunda choice hullas sal modellarni xato tuzib qoyibsizda shu serviceni ham orderni ichiga qsez yaxwi bo`lardi`
+#masalan qande bo'ladi 
+#bu code lar github da bor be malol o'zgartirsa bo'laveradi shuni tuzib berolasizmi hoz
+#hozrmasu bugun qilib berolishim mumkun
 class Service(models.Model):
     name = models.CharField(_('name'), max_length=120, blank=True, null=True)
     price = models.PositiveIntegerField(_('price'),)
@@ -168,10 +171,16 @@ class Room(models.Model):
 
 
 class Order(models.Model):
+    # ServiceChoices = (
+    #     ('suv', 'suv'),
+    #     ('gaz', 'gaz')
+    # )
     roomname = models.CharField(max_length=100, blank=True, null=True)
     roomprice = models.PositiveIntegerField()
     service = models.ManyToManyField(Service, blank=True)
     total = models.PositiveIntegerField(blank=True, null=True)
+    #masalanda mana
+    #service = models.CharField(max_length=200, choiches=SerciceChoices)
     
     def __str__(self):
         return f"{str(self.roomname)} {str(self.roomprice)}"
@@ -187,5 +196,5 @@ class Orders(models.Model):
 
     
 class OrderItem(models.Model):
-    room = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='order_one_room')
-    service = models.ManyToManyField(Orders)
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING, related_name='order_one_room')
+    service = models.ManyToManyField(Service, blank=True)
