@@ -295,8 +295,7 @@ def services(request):
         house = request.POST.get('option[]').split("-")
         house_name = house[0]
         house_price = int(house[1])
-        total += house_price + services.price
-        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services, totl=total)
+        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services)
         house.save()
             
         return redirect('myprint:services')
