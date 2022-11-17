@@ -3,7 +3,7 @@ import string
 
 from django.shortcuts import render, redirect
 from .models import *
-from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
+# from .serializers import ServicePriceSerializers, RoomCategorySerializers, OrdersSerialiser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .forms import *
@@ -11,9 +11,9 @@ from rest_framework import generics
 
 
 
-class RoomCategoryAPIView(generics.CreateAPIView):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrdersSerialiser
+# class RoomCategoryAPIView(generics.CreateAPIView):
+#     # queryset = OrderItem.objects.all()
+#     # serializer_class = OrdersSerialiser
 
 
 # class RoomCategoryAPIView(APIView):
@@ -44,24 +44,24 @@ class RoomCategoryAPIView(generics.CreateAPIView):
 
 
 
-class ServicePriceAPIView(APIView):
-    def get(self, request):
-        return Response({
-            'servicecategoryprice': ServicePriceSerializers(Service.objects.all(), many=True).data
-        })
+# class ServicePriceAPIView(APIView):
+#     def get(self, request):
+#         return Response({
+#             'servicecategoryprice': ServicePriceSerializers(Service.objects.all(), many=True).data
+#         })
     
-    def post(self, request):
-        data = OrdersSerialiser(data=request.data)
-        if data.is_valid():
-            return Response({
-                'status': "Post qo'shildi",
-                'data': data.errors
-            })
-        data.save()
-        return Response({
-            'status': 'success',
-            'data': OrdersSerialiser(data.instance).data
-        })
+#     def post(self, request):
+#         data = OrdersSerialiser(data=request.data)
+#         if data.is_valid():
+#             return Response({
+#                 'status': "Post qo'shildi",
+#                 'data': data.errors
+#             })
+#         data.save()
+#         return Response({
+#             'status': 'success',
+#             'data': OrdersSerialiser(data.instance).data
+#         })
 
 
 def home(request):
@@ -69,11 +69,15 @@ def home(request):
     form = OrderModelForm()
     if request.method == 'POST':
         form = OrderModelForm(request.POST)
+        # print("QWERTYTREAWERT------------", form)
         if form.is_valid():
+            print('AAAAAAAAA------', form)
             form.save()
             return redirect('myprint:home')
         else:
+            print("TTTTTTTTTTTT------------>>>>>>>", form.errors)
             form = OrderModelForm()
+            print("SSSSSSSSSSSSSS------------>>>>>>>", form.errors)
     context = {
         'form': form,
         'caruselimg': caruselimg,
@@ -92,7 +96,7 @@ def contact(request):
         form = ContactModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('myprint:contact')
+            return redirect('myprint:home')
         else:
             form = ContactModelForm()
     context = {
@@ -287,12 +291,16 @@ def info_order(request):
 
 
 def services(request):
+    card = CardServices.objects.all()
     cat = Room.objects.all()
     servic = Service.objects.all()
-    if request.method == "POST":
-        total = 0
+    form = AllForm()
+    if request.method == "POST" and form.is_valid():
+        form = AllForm(request.POST)
         services = request.POST.getlist('checks[]')
         house = request.POST.get('option[]').split("-")
+        name = AllForm('name')
+        phone_number = AllForm('phone_number')
         house_name = house[0]
         house_price = int(house[1])
         house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services)
@@ -301,6 +309,8 @@ def services(request):
         return redirect('myprint:services')
     context = {
         'cat': cat,
-        'servic': servic
+        'servic': servic,
+        'card': card,
+        'form': form,
     }
     return render(request, 'main/services.html', context=context)

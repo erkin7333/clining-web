@@ -3,6 +3,11 @@ from .models import *
 
 
 
+from django import forms
+from .models import *
+
+
+
 class OrderModelForm(forms.ModelForm):
     class Meta:
         model = OrderForm
@@ -56,3 +61,21 @@ class ContactModelForm(forms.ModelForm):
                 'type': 'text'
             })
         }
+
+
+class AllForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        exclude = ('roomname', 'roomname', 'roomprice' )
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Name',
+                'type': 'text'
+            }),
+            'phone_number': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Phone',
+                'type': 'text'
+            }),
+            }

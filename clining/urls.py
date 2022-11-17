@@ -13,6 +13,6 @@ urlpatterns = [
     path('guests/', guests, name='guests'),
     path('services/', services, name='services'),
     path('product_detail/', product_detail, name='product_detail'),
-    path('roomcategory/', RoomCategoryAPIView.as_view()),
-    path('serviceprice/', ServicePriceAPIView.as_view())
+    # path('roomcategory/', RoomCategoryAPIView.as_view()),
+    # path('serviceprice/', ServicePriceAPIView.as_view())
 ]
