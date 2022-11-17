@@ -296,19 +296,18 @@ def services(request):
     servic = Service.objects.all()
     form = AllForm()
     if request.method == "POST" and form.is_valid():
-        form = AllForm(request.POST)
         services = request.POST.getlist('checks[]')
         house = request.POST.get('option[]').split("-")
         name = AllForm('name')
         phone_number = AllForm('phone_number')
         house_name = house[0]
         house_price = int(house[1])
-        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services)
-        house.save()
+        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services, name=name, phone_number= phone_number)
+        form.save()
             
         return redirect('myprint:services')
     context = {
-        'cat': cat,
+        'cat': cat, 
         'servic': servic,
         'card': card,
         'form': form,
