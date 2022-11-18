@@ -107,7 +107,6 @@ class CardServices(models.Model):
 #forms
 class ContactForm(models.Model):
     name = models.CharField(_('name'), max_length=50)
-    email = models.EmailField(_('email'), max_length=60)
     phone_number = models.IntegerField(_('phone_number'))
     description = models.TextField(_('description'), max_length=550)
     def __str__(self):
@@ -158,3 +157,20 @@ class Meta:
 
 
     
+
+class ProjectDetail(models.Model):
+    name = models.CharField(max_length=65)
+    description = models.TextField(max_length=550)
+
+
+
+# Gallereya Tavsiloti
+class Project(models.Model):
+    gallary = models.ForeignKey(ProjectDetail, on_delete=models.CASCADE)
+    title = models.CharField(_('title'), max_length=200)
+    description = models.TextField(_('description'))
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        verbose_name = _('Project')

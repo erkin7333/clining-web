@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (Room, Service, Orders, OrderCategory, OrderForm,
                      CaruselImage, CaruselDetail, Settings, GallaryCategory,
-                     GallaryDetail, CardServices, SubServices, ContactForm)
+                     GallaryDetail, CardServices, SubServices, ContactForm, Project, ProjectDetail)
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -35,6 +35,18 @@ class CaruselImageAdmin(TranslationAdmin):
 class CaruselDetailAdmin(TranslationAdmin):
     list_display = ['id', 'carusel', 'title', 'description']
     list_display_links = ['id', 'title']
+
+
+@admin.register(Project)
+class ProjectDetailAdmin(TranslationAdmin):
+    list_display = ['id','gallary', 'title', 'description']
+    list_display_links = ['id','gallary', 'title', 'description']
+
+
+@admin.register(ProjectDetail)
+class ProjectAdmin(TranslationAdmin):
+    list_display = ['id','name' ,'description']
+    list_display_links = ['id', 'name']
 
 
 
@@ -81,8 +93,8 @@ class SubServicesAdmin(TranslationAdmin):
 
 
 class ContactFormAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'phone_number']
-    list_display_links = ['id', 'name', 'email']
+    list_display = ['id', 'name', 'phone_number', 'description']
+    list_display_links = ['id', 'name','description']
     class Mate:
         model = ContactForm
 admin.site.register(ContactForm, ContactFormAdmin)
@@ -104,11 +116,11 @@ class ServiceTypeAdmin(admin.ModelAdmin):
 
 
 
-class OrdersAdmin(admin.ModelAdmin):
-    list_display = [
-        'roomname', 'roomprice', 'servicename'
-    ]
-    class Meta:
-        model = Orders
+# class OrdersAdmin(admin.ModelAdmin):
+#     list_display = [
+#         'roomname', 'roomprice', 'servicename'
+#     ]
+#     class Meta:
+#         model = Orders
 
-admin.site.register(Orders, OrdersAdmin)
+# admin.site.register(Orders, OrdersAdmin)

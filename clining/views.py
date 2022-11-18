@@ -105,10 +105,18 @@ def contact(request):
     return render(request, 'main/contact.html', context=context)
 
 
-def gallary_details(request):
+def gallary_details(request, pk):
+    project = Project.objects.get(id=pk)
+    context = {
+        'project': project,
+    }
     return render(request, 'main/gallary-details.html')
 
 def gallary(request):
+    projects = Project.objects.filter(is_view_in_home=True).order_by('-id')
+    context = {
+        'projects': projects,
+    }
     return render(request, 'main/gallary.html')
 
 
@@ -294,22 +302,21 @@ def services(request):
     card = CardServices.objects.all()
     cat = Room.objects.all()
     servic = Service.objects.all()
-    form = AllForm()
-    if request.method == "POST" and form.is_valid():
-        services = request.POST.getlist('checks[]')
-        house = request.POST.get('option[]').split("-")
-        name = AllForm('name')
-        phone_number = AllForm('phone_number')
-        house_name = house[0]
-        house_price = int(house[1])
-        house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services, name=name, phone_number= phone_number)
-        form.save()
+    # form = AllForm()
+    if request.method == "POST":
+    #     services = request.POST.getlist('checks[]')
+    #     house = request.POST.get('option[]').split("-")
+    #     # name = AllForm('name')
+    #     phone_number = AllForm('phone_number')
+    #     house_name = house[0]
+    #     house_price = int(house[1])
+    #     house = Orders.objects.create(roomname=house_name, roomprice=house_price, servicename=services)
+    #     form.save()
             
-        return redirect('myprint:services')
+        return redirect('myprint:contact')
     context = {
         'cat': cat, 
         'servic': servic,
         'card': card,
-        'form': form,
     }
     return render(request, 'main/services.html', context=context)
