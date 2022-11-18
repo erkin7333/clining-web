@@ -161,6 +161,7 @@ class Meta:
 class Room2(models.Model):
     name = models.CharField(_('name'), max_length=100, blank=True, null=True)
     description = models.TextField(_('description'), max_length=550)
+    image = models.ImageField(_('image'), upload_to='media/ccc', blank=True, null=True)
     
     def __str__(self):
         return self.name

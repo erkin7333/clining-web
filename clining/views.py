@@ -105,22 +105,26 @@ def contact(request):
     return render(request, 'main/contact.html', context=context)
 
 
+def gallary(request):
+    proj = Room2.objects.filter()
+    context = {
+        'proj': proj,
+    }
+    return render(request, 'main/gallary.html', context=context)
+
+
 def gallary_details(request, pk):
-    project = Project.objects.get(id=pk)
+    project = Project.objects.filter(gallary_id=pk)
     context = {
         'project': project,
     }
-    return render(request, 'main/gallary-details.html')
+    return render(request, 'main/gallary-details.html', context)
 
-def gallary(request):
-    projects = Project.objects.filter(is_view_in_home=True).order_by('-id')
-    context = {
-        'projects': projects,
-    }
-    return render(request, 'main/gallary.html')
+
 
 
 def guests(request):
+    
     return render(request, 'main/guests.html')
 
 

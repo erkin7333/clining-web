@@ -43,6 +43,12 @@ class ProjectDetailAdmin(TranslationAdmin):
     list_display_links = ['id', 'title', 'description']
 
 
+@admin.register(Room2)
+class ProjectDetailAdmin(TranslationAdmin):
+    list_display = ['id', 'name', 'description']
+    list_display_links = ['id', 'name', 'description']
+
+
 
 
 
