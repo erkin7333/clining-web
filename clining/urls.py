@@ -12,5 +12,5 @@ urlpatterns = [
     path('guests/', guests, name='guests'),
     path('services/', services, name='services'),
     path('product-detail/', product_detail, name='product'),
-    path('product-detail/<int:pk>/', product_detail, name='gallary-detail'),
+    path('product-detail/<int:pk>/', product_detail, name='product-detail'),
 ]
