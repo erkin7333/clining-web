@@ -2,13 +2,6 @@ from django import forms
 from .models import *
 
 
-
-
-from django import forms
-from .models import *
-
-
-
 class OrderModelForm(forms.ModelForm):
     class Meta:
         model = OrderForm
