@@ -1,12 +1,11 @@
 from modeltranslation.translator import TranslationOptions, register
-from .forms import (CaruselImage, CaruselDetail, GallaryCategory,Project,
-                    GallaryDetail, SubServices, CardServices, Service, Room, ProjectDetail)
+from .models import *
 
 
 
-@register(ProjectDetail)
+@register(Room2)
 class ProjectDetail(TranslationOptions):
-    fields = ('name')
+    fields = ('name',)
 
 
 @register(CaruselImage)

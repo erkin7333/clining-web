@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import (Room, Service, Orders, OrderCategory, OrderForm,
-                     CaruselImage, CaruselDetail, Settings, GallaryCategory,
-                     GallaryDetail, CardServices, SubServices, ContactForm, Project, ProjectDetail)
+from .models import *
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -37,16 +35,14 @@ class CaruselDetailAdmin(TranslationAdmin):
     list_display_links = ['id', 'title']
 
 
+
+
 @admin.register(Project)
 class ProjectDetailAdmin(TranslationAdmin):
-    list_display = ['id','gallary', 'title', 'description']
-    list_display_links = ['id','gallary', 'title', 'description']
+    list_display = ['id', 'gallary', 'title', 'description']
+    list_display_links = ['id', 'title', 'description']
 
 
-@admin.register(ProjectDetail)
-class ProjectAdmin(TranslationAdmin):
-    list_display = ['id','name' ,'description']
-    list_display_links = ['id', 'name']
 
 
 
