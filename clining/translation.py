@@ -1,6 +1,12 @@
 from modeltranslation.translator import TranslationOptions, register
-from .forms import (CaruselImage, CaruselDetail, GallaryCategory,
-                    GallaryDetail, SubServices, CardServices, ServiceType, RoomCategory)
+from .models import *
+
+
+
+@register(Room2)
+class ProjectDetail(TranslationOptions):
+    fields = ('name',)
+
 
 
 @register(CaruselImage)
@@ -9,6 +15,11 @@ class CaruselImageTranslation(TranslationOptions):
 
 @register(CaruselDetail)
 class CaruselDetailTranslation(TranslationOptions):
+    fields = ('title', 'description')
+
+
+@register(Project)
+class ProjectDetailTranslation(TranslationOptions):
     fields = ('title', 'description')
 
 @register(GallaryCategory)
@@ -29,11 +40,12 @@ class SubServicesTranslation(TranslationOptions):
 class CardServicesTranslation(TranslationOptions):
     fields = ('name', 'detail')
 
-@register(ServiceType)
+
+@register(Service)
 class ServiceTypeTranslation(TranslationOptions):
     fields = ('name',)
 
 
-@register(RoomCategory)
+@register(Room)
 class RoomCategoryTranslation(TranslationOptions):
     fields = ('name',)

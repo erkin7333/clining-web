@@ -1,18 +1,20 @@
-{% extends 'base.html' %}
-{% load static %}
+
+{% extends 'base.html' %} 
+{% load static %} 
+{% load i18n %}
 
 {% block content %}
-
      <!-- Start Breadcrumb 
     ============================================= -->
-    <div class="breadcrumb-area text-center shadow dark text-light bg-cover" style="background-image: url({% static 'img/banner/10.jpg' %});">
+    <div class="breadcrumb-area text-center shadow dark text-light bg-cover" style="background-image: url({% static 'img/banner/10.jpg'%});">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <h1>Contact Us</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="active">Contact</li>
+                        <li><a href="{% url 'myprint:home' %}"><i class="fas fa-home"></i>{% trans " Home" %}</a></li>
+                        <li class="active">{% trans "Contact" %}</li>
                     </ul>
                 </div>
             </div>
@@ -29,19 +31,21 @@
                     <div class="col-lg-4 info">
                         <div class="content text-light text-center">
                             <div class="thumb">
-                                <img src="{% static 'img/illustration/4.png' %}" alt="Thumb">
+
+                                <img src="{{contact_us_banner.location_call_img.url}}" alt="Thumb">
+
                             </div>
                             <ul>
                                 <li>
                                     <i class="fal fa-map-marker-alt"></i>
                                     <p>
-                                        22 Baker Street, <br> London, United Kingdom, <br> W1U 3BW
+                                        {{location}}
                                     </p>
                                 </li>
                                 <li>
                                     <i class="fal fa-phone-alt"></i>
                                     <p>
-                                        +44-20-7328-4499 <br> +99-34-8878-9989
+                                        {{extra_phone1}} <br> {{extra_phone2}}
                                     </p>
                                 </li>
                             </ul>
@@ -49,9 +53,9 @@
                     </div>
                     <div class="col-lg-8 contact-form-box">
                         <div class="form-box">
-                            <h2>Let's talk?</h2>
+                            <h2>{% trans "Let's talk?" %}</h2>
                             <p>
-                                It's all about the humans behind a brand and those experiencing it, we're right there. In the middle performance quick.
+                                {% trans "It's all about the humans behind a brand and those experiencing it, we're right there. In the middle performance quick." %}
                             </p>
                             <form action="" method="POST">
                                 {% csrf_token %}
@@ -66,12 +70,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            {{ form.email }}
-                                            <span class="alert-error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
+
                                             {{ form.phone_number }}
                                             <span class="alert-error"></span>
                                         </div>
@@ -119,4 +118,5 @@
     </div>
     <!-- End Google Maps -->
 
- {% endblock %}
+{% endblock %}
+

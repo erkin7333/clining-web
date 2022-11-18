@@ -8,11 +8,10 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('product-detail/<int:pk>/', product_detail, name='product_detail'),
     path('contact/', contact, name='contact'),
-    path('gallary_details/', gallary_details, name='gallary_details'),
     path('gallary/', gallary, name='gallary'),
+    path('gallary/<int:pk>/', gallary_details, name='gallary-detail'),
     path('guests/', guests, name='guests'),
     path('services/', services, name='services'),
-
-    path('roomcategory/', RoomCategoryAPIView.as_view()),
-    path('serviceprice/', ServicePriceAPIView.as_view())
+    path('product-detail/', product_detail, name='product'),
+    path('product-detail/<int:pk>/', product_detail, name='gallary-detail'),
 ]

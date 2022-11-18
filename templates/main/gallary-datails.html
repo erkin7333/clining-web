@@ -1,21 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% extends 'base.html' %}
 
-
+{% load static %}
 {% block content %}
-    <!-- Start Breadcrumb
-   ============================================= -->
-    <div class="breadcrumb-area text-center shadow dark text-light bg-cover"
-         style="background-image: url({% static 'img/banner/6.jpg' %});">
+
+     <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area text-center shadow dark text-light bg-cover" style="background-image: url({% static 'img/banner/6.jpg' %});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1>Project Details</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#"><i class="fas fa-home"></i> Project</a></li>
-                        <li class="active">Details</li>
-                    </ul>
+                    {% for pro in project %}
+                        <!-- Single Item -->
+                        <div class="pf-item" style="position: absolute; left: 0%; top: 0px;">
+                            <div class="project-style-two">
+                                <img src="{{pro.gallary.image.url}}" alt="Thumb">
+                                <div class="info">
+                                    <span>{{pro.title   }}</span>
+                                    <h4><a href="">{{pro.description}}</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        {% endfor %}
                 </div>
             </div>
         </div>
@@ -33,20 +42,12 @@
                 <div class="top-info">
                     <div class="row">
                         <div class="col-lg-12 left-info">
-                            <h2>Making A Clean Difference</h2>
+                            <h2>{% trans "Making A Clean Difference" %}</h2>
                             <p>
-                                New had happen unable uneasy. Drawings can followed improved out sociable not. Earnestly
-                                so do instantly pretended. See general few civilly amiable pleased account carried.
-                                Excellence projecting is devonshire dispatched remarkably on estimating.
+                                {% trans "New had happen unable uneasy. Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating." %}
                             </p>
                             <p>
-                                Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget urna potenti cum
-                                vestibulum cras. Tempor nonummy metus lobortis. Sociis velit etiam, dapibus. Lectus
-                                vehicula pellentesque cras posuere tempor facilisi habitant lectus rutrum pede quisque
-                                hendrerit parturient posuere mauris ad elementum fringilla facilisi volutpat fusce
-                                pharetra felis sapien varius quisque class convallis praesent est sollicitudin donec
-                                nulla venenatis, cursus fermentum netus posuere sociis porta risus habitant malesuada
-                                nulla habitasse hymenaeos. Viverra curabitur nisi vel sollicitudin dictum natoqu.
+                                {% trans "Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget urna potenti cum vestibulum cras. Tempor nonummy metus lobortis. Sociis velit etiam, dapibus. Lectus vehicula pellentesque cras posuere tempor facilisi habitant lectus rutrum pede quisque hendrerit parturient posuere mauris ad elementum fringilla facilisi volutpat fusce pharetra felis sapien varius quisque class convallis praesent est sollicitudin donec nulla venenatis, cursus fermentum netus posuere sociis porta risus habitant malesuada nulla habitasse hymenaeos. Viverra curabitur nisi vel sollicitudin dictum natoqu." %}
                             </p>
                         </div>
 
@@ -58,5 +59,4 @@
         </div>
     </div>
     <!-- End Project Details Area -->
-{% endblock %}
-   
+    {% endblock content %}

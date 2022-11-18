@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import (RoomCategory, ServiceType, Orders, OrderCategory, OrderForm,
-                     CaruselImage, CaruselDetail, Settings, GallaryCategory,
-                     GallaryDetail, CardServices, SubServices, ContactForm)
+
+from .models import *
+
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -17,7 +17,9 @@ admin.site.register(OrderCategory, OrderCategoryAdmin)
 
 class OrderFormAdmin(admin.ModelAdmin):
     list_display = [
-        'id', 'name', 'email', 'phone_number', 'ordercategory'
+
+        'id', 'name', 'email', 'phone_number', 'category'
+
     ]
     list_display_links = ['name', 'email']
     class Meta:
@@ -33,8 +35,27 @@ class CaruselImageAdmin(TranslationAdmin):
 
 @admin.register(CaruselDetail)
 class CaruselDetailAdmin(TranslationAdmin):
-    list_display = ['id', 'caruselimage', 'title', 'description']
+
+    list_display = ['id', 'carusel', 'title', 'description']
+
     list_display_links = ['id', 'title']
+
+
+
+
+
+@admin.register(Project)
+class ProjectDetailAdmin(TranslationAdmin):
+    list_display = ['id', 'gallary', 'title', 'description']
+    list_display_links = ['id', 'title', 'description']
+
+
+@admin.register(Room2)
+class ProjectDetailAdmin(TranslationAdmin):
+    list_display = ['id', 'name', 'description']
+    list_display_links = ['id', 'name', 'description']
+
+
 
 
 
@@ -54,8 +75,10 @@ class GallaryCategoryAdmin(TranslationAdmin):
 
 @admin.register(GallaryDetail)
 class GallaryDetailAdmin(TranslationAdmin):
-    list_display = ['id', 'gallarycategory', 'title', 'description']
-    list_display_links = ['id', 'gallarycategory', 'title']
+
+    list_display = ['id', 'gallary', 'title', 'description']
+    list_display_links = ['id', 'gallary', 'title']
+
 
 
 
@@ -63,6 +86,8 @@ class GallaryDetailAdmin(TranslationAdmin):
 class CardServicesAdmin(TranslationAdmin):
     list_display = ['id', 'services', 'name', 'price', 'detail']
     list_display_links = ['id', 'name', 'price']
+
+
     def services(self, obj):
         return len(obj.service.all())
     services.short_description = 'service'
@@ -80,14 +105,18 @@ class SubServicesAdmin(TranslationAdmin):
 
 
 class ContactFormAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'phone_number']
-    list_display_links = ['id', 'name', 'email']
+
+    list_display = ['id', 'name', 'phone_number', 'description']
+    list_display_links = ['id', 'name','description']
+
     class Mate:
         model = ContactForm
 admin.site.register(ContactForm, ContactFormAdmin)
 
 
-@admin.register(RoomCategory)
+
+@admin.register(Room)
+
 class RoomCategoryAdmin(admin.ModelAdmin):
     list_display = [
         'id', 'name', 'price'
@@ -95,7 +124,9 @@ class RoomCategoryAdmin(admin.ModelAdmin):
     list_display_links = ['name']
 
 
-@admin.register(ServiceType)
+
+@admin.register(Service)
+
 class ServiceTypeAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'price']
     list_display_links = ['name']
@@ -103,11 +134,13 @@ class ServiceTypeAdmin(admin.ModelAdmin):
 
 
 
-class OrdersAdmin(admin.ModelAdmin):
-    list_display = [
-        'roomname', 'roomprice', 'servicename', 'serviceprice'
-    ]
-    class Meta:
-        model = Orders
 
-admin.site.register(Orders, OrdersAdmin)
+# class OrdersAdmin(admin.ModelAdmin):
+#     list_display = [
+#         'roomname', 'roomprice', 'servicename'
+#     ]
+#     class Meta:
+#         model = Orders
+
+# admin.site.register(Orders, OrdersAdmin)
+
