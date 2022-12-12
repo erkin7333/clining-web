@@ -180,3 +180,4 @@ class Project(models.Model):
         return self.title
     class Meta:
         verbose_name = _('Project')
+        
